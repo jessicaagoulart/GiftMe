@@ -4,8 +4,11 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		backgroundColor: "#fff",
+		paddingTop: 45,
+	},
+	containerForm: {
 		paddingHorizontal: 40,
-		padding: 20,
+		marginTop: 20,
 	},
 	myEvent: {
 		width: "100%",
@@ -34,6 +37,22 @@ const styles = StyleSheet.create({
 		padding: 10,
 		height: 40,
 		fontSize: 15,
+	},
+
+	label: {
+		width: "100%",
+		fontSize: 16,
+		marginBottom: 15,
+		color: "#444",
+		fontWeight: "600",
+		textAlign: "center",
+	},
+	title: {
+		color: "#444",
+		marginVertical: 10,
+		fontWeight: "600",
+		fontSize: 18,
+		marginTop: 20,
 	},
 });
 

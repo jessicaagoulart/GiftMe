@@ -7,15 +7,15 @@ import {
 	SafeAreaView,
 } from "react-native";
 import database from "../../config/firebaseconfig";
-import { Feather } from "@expo/vector-icons";
 import styles from "./style";
-
 import Cabecalho from "../../components/Cabecalho";
 import Event from "../../components/Event";
+import { useStore } from "../../store";
 
-export default function Events({ navigation }) {
+export default function Events({ navigation, route }) {
+	const [store] = useStore();
+
 	const [events, setEvents] = useState([]);
-
 	// function deleteEvent(id) {
 	// 	database.collection("Eventos").doc(id).delete();
 	// }
@@ -31,25 +31,24 @@ export default function Events({ navigation }) {
 	}, []);
 
 	return (
-		<SafeAreaView style={styles.container}>
+		<View style={styles.container}>
+			<Cabecalho title="Eventos" />
 			<FlatList
-				style={styles.FlatList}
 				showsVerticalScrollIndicator={false}
 				data={events}
 				renderItem={(item) => {
-					return <Event {...item} navigation={navigation} />;
+					return <Event {...item} />;
 				}}
 				keyExtractor={(item) => item.id}
-				ListHeaderComponent={<Cabecalho title="Eventos" />}
 				ListFooterComponent={<View style={{ padding: 60 }} />}
 			/>
 
 			<TouchableOpacity
 				style={styles.button}
-				onPress={() => navigation.navigate("NewEvent")}
+				onPress={() => navigation.navigate("NewEvent", { userId: store.auth })}
 			>
 				<Text style={styles.plus}>+</Text>
 			</TouchableOpacity>
-		</SafeAreaView>
+		</View>
 	);
 }

@@ -1,22 +1,30 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-	eventTitle: {
-		width: "100%",
-		alignContent: "flex-start",
-		color: "#444",
-		padding: 40,
-		fontSize: 20,
-		borderRadius: 20,
-	},
 	contentEvent: {
 		width: "100%",
 		backgroundColor: "#eee",
 		flexDirection: "row",
-		justifyContent: "space-between",
+		justifyContent: "flex-start",
 		alignItems: "center",
 		marginTop: 10,
 		paddingVertical: 10,
+	},
+	containerDescription: {
+		alignItems: "flex-start",
+		marginLeft: 20,
+		width: 220,
+	},
+	eventTitle: {
+		width: "100%",
+		color: "#444",
+		fontSize: 20,
+		marginBottom: 5,
+	},
+	eventOrganizer: {
+		width: "100%",
+		color: "#444",
+		fontSize: 15,
 	},
 	containerIcons: {
 		backgroundColor: "#fff",

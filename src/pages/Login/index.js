@@ -2,7 +2,6 @@ import React from "react";
 import {
 	View,
 	Text,
-	SafeAreaView,
 	TextInput,
 	TouchableOpacity,
 	KeyboardAvoidingView,
@@ -11,12 +10,14 @@ import { useState } from "react";
 import ErrorMessage from "../../components/ErrorMessage";
 import styles from "./style";
 import firebase from "firebase";
+import { useAuth } from "../../auth";
 
 export default function Login({ navigation }) {
 	const [error, setError] = useState(false);
 	const [message, setMessage] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [, { login }] = useAuth();
 
 	function loginFirebase() {
 		firebase
@@ -24,13 +25,13 @@ export default function Login({ navigation }) {
 			.signInWithEmailAndPassword(email, password)
 			.then((userCredential) => {
 				let user = userCredential.user;
-				navigation.navigate("Events");
+				login(user.uid);
+				navigation.navigate("Events", { userId: user.uid });
 			})
 			.catch((error) => {
 				let errorCode = error.code;
 				setError(true);
 				setMessage("Verifique seu email ou senha");
-				console.log(errorCode);
 			});
 	}
 

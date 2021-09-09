@@ -5,14 +5,14 @@ const styles = StyleSheet.create({
 		width: "100%",
 		flexDirection: "row",
 		justifyContent: "flex-start",
-		marginTop: 20,
+		paddingHorizontal: 40,
 		alignItems: "center",
 	},
 	message: {
 		color: "#666",
 		fontSize: 16,
 		marginLeft: 10,
-		fontWeight: "700",
+		fontWeight: "600",
 	},
 });
 

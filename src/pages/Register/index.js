@@ -26,7 +26,7 @@ export default function Register({ navigation }) {
 			.then((userCredential) => {
 				setError(false);
 				let user = userCredential.user;
-				console.log(user);
+
 				navigation.navigate("Login");
 			})
 			.catch((error) => {
@@ -40,14 +40,12 @@ export default function Register({ navigation }) {
 					case "auth/invalid-email":
 						setMessage("Email inválido");
 				}
-				console.log(errorCode);
 			});
 	}
 
 	return (
 		<KeyboardAvoidingView style={styles.container}>
 			<Text style={styles.title}>Cadastre-se</Text>
-
 			<TextInput
 				type="text"
 				style={styles.input}

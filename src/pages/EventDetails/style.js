@@ -4,8 +4,12 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		backgroundColor: "#fff",
-		justifyContent: "flex-start",
-		paddingTop: 20,
+		paddingTop: 45,
+	},
+	title: {
+		fontSize: 18,
+		marginVertical: 15,
+		paddingHorizontal: 30,
 	},
 	eventTitle: {
 		fontSize: 20,
@@ -25,6 +29,61 @@ const styles = StyleSheet.create({
 	},
 	textButton: {
 		color: "#fff",
+	},
+	giftsContainer: {
+		width: "100%",
+		paddingHorizontal: 20,
+		flex: 1,
+		paddingBottom: 100,
+	},
+	item: {
+		justifyContent: "flex-start",
+		alignItems: "center",
+		flexDirection: "row",
+		width: "90%",
+		margin: 10,
+	},
+	imagem: {
+		width: 70,
+		height: 70,
+		marginRight: 20,
+		resizeMode: "contain",
+	},
+	nomeProduto: {
+		fontSize: 18,
+		width: 200,
+		color: "#333",
+	},
+	precoProduto: {
+		fontSize: 17,
+		marginTop: 3,
+		color: "#444",
+	},
+	buttonPresentear: {
+		backgroundColor: "#EF476F",
+		width: 100,
+		height: 40,
+		justifyContent: "center",
+		borderRadius: 20,
+	},
+	textPresentear: {
+		color: "#fff",
+		textAlign: "center",
+	},
+	heart: {
+		backgroundColor: "#fff",
+		alignItems: "center",
+	},
+	heartPressed: {
+		backgroundColor: "#444",
+	},
+	itemDisable: {
+		justifyContent: "flex-start",
+		alignItems: "center",
+		flexDirection: "row",
+		width: "90%",
+		margin: 10,
+		opacity: 0.5,
 	},
 });
 
