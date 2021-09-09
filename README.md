@@ -2,7 +2,9 @@
 
 <img src="https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAF"/>
 
-Projeto sendo desenvolvido para o Bootcamp de React Native na Compasso Uol. O projeto é um aplicativo de lista de desejo de presentes. <br/><br/>
+Projeto sendo desenvolvido para o Bootcamp de React Native na Compasso Uol como forma de aprendizado, reaproveitando os conhecimentos adquiridos em ReactJS, iniciando em React Native e aprimorando as tecnologias.
+
+O projeto é um aplicativo de lista de desejo de presentes. <br/><br/>
 
 # :white_medium_small_square: O App :white_medium_small_square:
 
