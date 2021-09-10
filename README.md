@@ -11,6 +11,7 @@ O projeto é um aplicativo de lista de desejo de presentes, onde os usuários po
 # :white_medium_small_square: O App :white_medium_small_square:
 
 <br/>
+
 :white_small_square: Login e Cadastro de usuários. <br/>
 
 :white_small_square: A tela principal logada mostra uma lista de eventos cadastrados no aplicativo. <br/>
