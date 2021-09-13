@@ -90,6 +90,7 @@ export default function EventDetails({ navigation, route }) {
 									</Text>
 									<Text style={styles.precoProduto}>R${produto.price}</Text>
 								</View>
+
 								{/* SHOW HEART ICON IF USER IS NOT EVENT ORGANIZER */}
 								{store.auth != userId && (
 									<TouchableOpacity>
