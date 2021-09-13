@@ -18,7 +18,7 @@ O projeto é um aplicativo de lista de desejo de presentes, onde os usuários po
 
 :white_small_square: O usuário pode criar um evento e definir uma lista de desejo de presentes que gostaria de receber dos seus convidados do evento.<br/>
 
-:white_small_square: O usuário pode editar seu evento já cadastrado.<br/>
+:white_small_square: O usuário pode editar seu evento já cadastrado, alterar nome do evento e adicionar mais presentes.<br/>
 
 :white_small_square: O usuário pode excluir seu evento já cadastrado.<br/>
 
