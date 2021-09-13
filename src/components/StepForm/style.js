@@ -83,9 +83,9 @@ const styles = StyleSheet.create({
 	},
 	giftItem: {
 		padding: 15,
-		margin: 15,
+		margin: 10,
 		width: 150,
-		height: 200,
+		height: 190,
 		borderRadius: 10,
 		backgroundColor: "#fff",
 		justifyContent: "center",
@@ -93,9 +93,9 @@ const styles = StyleSheet.create({
 	},
 	giftItemPressed: {
 		padding: 15,
-		margin: 15,
+		margin: 10,
 		width: 150,
-		height: 200,
+		height: 190,
 		borderRadius: 10,
 		backgroundColor: "#fff",
 		justifyContent: "center",
@@ -118,6 +118,7 @@ const styles = StyleSheet.create({
 		textAlign: "center",
 	},
 	stepFour: {
+		paddingHorizontal: 40,
 		paddingVertical: 15,
 		justifyContent: "center",
 		alignItems: "center",
@@ -131,7 +132,7 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 		alignItems: "center",
 		borderRadius: 30,
-		marginTop: 50,
+		marginTop: 30,
 	},
 });
 

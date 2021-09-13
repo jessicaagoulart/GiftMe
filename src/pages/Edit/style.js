@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
 		paddingTop: 45,
 	},
 	containerForm: {
+		flex: 1,
 		paddingHorizontal: 40,
 		marginTop: 20,
 	},
@@ -18,17 +19,24 @@ const styles = StyleSheet.create({
 		color: "#444",
 		fontWeight: "600",
 	},
-	saveButton: {
-		width: 70,
-		height: 35,
-		backgroundColor: "#EF476F",
-		justifyContent: "center",
+	deleteButton: {
+		width: 140,
+		height: 40,
+		paddingHorizontal: 10,
+		justifyContent: "space-between",
 		alignItems: "center",
-		borderRadius: 30,
+		flexDirection: "row",
 		marginTop: 25,
+		alignSelf: "flex-end",
+	},
+	textDelete: {
+		fontSize: 15,
+		color: "#555",
 	},
 	textButton: {
 		color: "#fff",
+		padding: 10,
+		textAlign: "center",
 	},
 	input: {
 		width: "100%",
@@ -53,6 +61,29 @@ const styles = StyleSheet.create({
 		fontWeight: "600",
 		fontSize: 18,
 		marginTop: 20,
+	},
+	modal: {
+		backgroundColor: "#eee",
+		borderRadius: 20,
+		alignItems: "center",
+		justifyContent: "center",
+	},
+	textModal: {
+		fontSize: 20,
+		color: "#222",
+		textAlign: "center",
+		marginVertical: 20,
+	},
+	buttonContainer: {
+		flexDirection: "row",
+		justifyContent: "center",
+		marginBottom: 10,
+	},
+	buttonModal: {
+		backgroundColor: "#EF476F",
+		width: 70,
+		marginHorizontal: 5,
+		borderRadius: 20,
 	},
 });
 

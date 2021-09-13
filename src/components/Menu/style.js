@@ -38,9 +38,10 @@ const styles = StyleSheet.create({
 		maxWidth: "0%",
 	},
 	item: {
-		fontSize: 15,
+		fontSize: 18,
 		paddingHorizontal: 10,
 		margin: 3,
+		marginVertical: 8,
 		color: "#fff",
 	},
 });

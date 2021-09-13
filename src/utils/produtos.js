@@ -112,237 +112,167 @@ const produtos = [
 		price: "899.90",
 		description: "Sempre cheia, de preferencia!",
 	},
-	// {
-	//   id: 16,
-	//   name: "",
-	//   url: require(""),
-	//   price: ,
-	//   description: ""
-	// },
-	// {
-	//   id: 17,
-	//   name: "",
-	//   url: require(""),
-	//   price: ,
-	//   description: ""
-	// },
-	// {
-	//   id: 18,
-	//   name: "",
-	//   url: require(""),
-	//   price: ,
-	//   description: ""
-	// },
-	// {
-	//   id: 19,
-	//   name: "",
-	//   url: require(""),
-	//   price: ,
-	//   description: ""
-	// },
-	// {
-	//   id: 20,
-	//   name: "",
-	//   url: require(""),
-	//   price: ,
-	//   description: ""
-	// },
-	// {
-	//   id: 21,
-	//   name: "",
-	//   url: require(""),
-	//   price: ,
-	//   description: ""
-	// },
-	// {
-	//   id: 22,
-	//   name: "",
-	//   url: require(""),
-	//   price: ,
-	//   description: ""
-	// },
-	// {
-	//   id: 23,
-	//   name: "",
-	//   url: require(""),
-	//   price: ,
-	//   description: ""
-	// },
-	// {
-	//   id: 24,
-	//   name: "",
-	//   url: require(""),
-	//   price: ,
-	//   description: ""
-	// },
-	// {
-	//   id: 25,
-	//   name: "",
-	//   url: require(""),
-	//   price: ,
-	//   description: ""
-	// },
-	// {
-	//   id: 26,
-	//   name: "",
-	//   url: require(""),
-	//   price: ,
-	//   description: ""
-	// },
-	// {
-	//   id: 27,
-	//   name: "",
-	//   url: require(""),
-	//   price: ,
-	//   description: ""
-	// },
-	// {
-	//   id: 28,
-	//   name: "",
-	//   url: require(""),
-	//   price: ,
-	//   description: ""
-	// },
-	// {
-	//   id: 29,
-	//   name: "",
-	//   url: require(""),
-	//   price: ,
-	//   description: ""
-	// },
-	// {
-	//   id: 30,
-	//   name: "",
-	//   url: require(""),
-	//   price: ,
-	//   description: ""
-	// },
-	// {
-	//   id: 31,
-	//   name: "",
-	//   url: require(""),
-	//   price: ,
-	//   description: ""
-	// },
-	// {
-	//   id: 32,
-	//   name: "",
-	//   url: require(""),
-	//   price: ,
-	//   description: ""
-	// },
-	// {
-	//   id: 33,
-	//   name: "",
-	//   url: require(""),
-	//   price: ,
-	//   description: ""
-	// },
-	// {
-	//   id: 34,
-	//   name: "",
-	//   url: require(""),
-	//   price: ,
-	//   description: ""
-	// },
-	// {
-	//   id: 35,
-	//   name: "",
-	//   url: require(""),
-	//   price: ,
-	//   description: ""
-	// },
-	// {
-	//   id: 36,
-	//   name: "",
-	//   url: require(""),
-	//   price: ,
-	//   description: ""
-	// },
-	// {
-	//   id: 37,
-	//   name: "",
-	//   url: require(""),
-	//   price: ,
-	//   description: ""
-	// },
-	// {
-	//   id: 38,
-	//   name: "",
-	//   url: require(""),
-	//   price: ,
-	//   description: ""
-	// },
-	// {
-	//   id: 39,
-	//   name: "",
-	//   url: require(""),
-	//   price: ,
-	//   description: ""
-	// },
-	// {
-	//   id: 40,
-	//   name: "",
-	//   url: require(""),
-	//   price: ,
-	//   description: ""
-	// },
-	// {
-	//   id: 41,
-	//   name: "",
-	//   url: require(""),
-	//   price: ,
-	//   description: ""
-	// },
-	// {
-	//   id: 42,
-	//   name: "",
-	//   url: require(""),
-	//   price: ,
-	//   description: ""
-	// },
-	// {
-	//   id: 43,
-	//   name: "",
-	//   url: require(""),
-	//   price: ,
-	//   description: ""
-	// },
-	// {
-	//   id: 44,
-	//   name: "",
-	//   url: require(""),
-	//   price: ,
-	//   description: ""
-	// },
-	// {
-	//   id: 45,
-	//   name: "",
-	//   url: require(""),
-	//   price: ,
-	//   description: ""
-	// },
-	// {
-	//   id: 46,
-	//   name: "",
-	//   url: require(""),
-	//   price: ,
-	//   description: ""
-	// },
-	// {
-	//   id: 47,
-	//   name: "",
-	//   url: require(""),
-	//   price: ,
-	//   description: ""
-	// },
-	// {
-	//   id: 48,
-	//   name: "",
-	//   url: require(""),
-	//   price: ,
-	//   description: ""
-	// },
+	{
+		id: 16,
+		name: "100 reais",
+		url: require("../assets/img/dinheiro.jpg"),
+		price: "100.00",
+		description: "",
+	},
+	{
+		id: 17,
+		name: "200 reais",
+		url: require("../assets/img/dinheiro2.jpg"),
+		price: "200.00",
+		description: "",
+	},
+	{
+		id: 18,
+		name: "300 reais",
+		url: require("../assets/img/dinheiro3.jpg"),
+		price: "300.00",
+		description: "",
+	},
+	{
+		id: 19,
+		name: "Câmera Instax",
+		url: require("../assets/img/instax.jpeg"),
+		price: "499.90",
+		description: "",
+	},
+	{
+		id: 20,
+		name: "Jogo de Cama Casal",
+		url: require("../assets/img/jogocama.jpeg"),
+		price: "199.00",
+		description: "",
+	},
+	{
+		id: 21,
+		name: "Jogo de colheres",
+		url: require("../assets/img/jogocozinha.jpeg"),
+		price: "219.90",
+		description: "",
+	},
+	{
+		id: 22,
+		name: "Jogo de Cama Solteiro",
+		url: require("../assets/img/lencol.jpeg"),
+		price: "99.90",
+		description: "",
+	},
+	{
+		id: 23,
+		name: "Liquidificador",
+		url: require("../assets/img/liquidificador.jpeg"),
+		price: "119.90",
+		description: "",
+	},
+	{
+		id: 24,
+		name: "Lixeira Elétrica",
+		url: require("../assets/img/lixeira.jpeg"),
+		price: "259.90",
+		description: "",
+	},
+	{
+		id: 25,
+		name: "Mala de viagem",
+		url: require("../assets/img/mala.jpeg"),
+		price: "199.90",
+		description: "",
+	},
+	{
+		id: 26,
+		name: "Conjunto de malas",
+		url: require("../assets/img/malas.jpeg"),
+		price: "599.90",
+		description: "",
+	},
+	{
+		id: 27,
+		name: "Microondas",
+		url: require("../assets/img/microondas.jpeg"),
+		price: "399.90",
+		description: "",
+	},
+	{
+		id: 28,
+		name: "Nintendo Switch",
+		url: require("../assets/img/nintendo.jpeg"),
+		price: "2399.90",
+		description: "",
+	},
+	{
+		id: 29,
+		name: "Notebook",
+		url: require("../assets/img/notebook.jpeg"),
+		price: "4199.90",
+		description: "",
+	},
+	{
+		id: 30,
+		name: "Organizador",
+		url: require("../assets/img/organizador.jpeg"),
+		price: "129.90",
+		description: "",
+	},
+	{
+		id: 31,
+		name: "Conjunto de panelas",
+		url: require("../assets/img/panelas.jpeg"),
+		price: "378.90",
+		description: "",
+	},
+	{
+		id: 32,
+		name: "Conjunto de vasilhas",
+		url: require("../assets/img/potes.jpeg"),
+		price: "129.90",
+		description: "",
+	},
+	{
+		id: 33,
+		name: "Sofá",
+		url: require("../assets/img/sofa.jpeg"),
+		price: "599.90",
+		description: "",
+	},
+	{
+		id: 34,
+		name: "Conjunto de temperos",
+		url: require("../assets/img/temperos.jpeg"),
+		price: "149.99",
+		description: "",
+	},
+	{
+		id: 35,
+		name: "Torradeira",
+		url: require("../assets/img/torradeira.jpeg"),
+		price: "199.90",
+		description: "",
+	},
+	{
+		id: 36,
+		name: "Televisão",
+		url: require("../assets/img/tv.jpeg"),
+		price: "1599.90",
+		description: "",
+	},
+	{
+		id: 37,
+		name: "Óculos de Realidade Virtual",
+		url: require("../assets/img/vr.jpeg"),
+		price: "2099.90",
+		description: "",
+	},
+	{
+		id: 38,
+		name: "Smart Watch",
+		url: require("../assets/img/watch.jpeg"),
+		price: "1199.90",
+		description: "",
+	},
 ];
 
 export default produtos;

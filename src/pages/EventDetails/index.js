@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, TouchableOpacity, ScrollView, Image } from "react-native";
-import styles from "./style.js";
-import { Feather } from "@expo/vector-icons";
 import Cabecalho from "../../components/Cabecalho/index.js";
 import EventInfo from "../../components/EventInfo/index.js";
+import firebase from "firebase";
 import { useStore } from "../../store.js";
 import produtos from "../../utils/produtos.js";
 import { Heart } from "react-native-feather";
 import database from "../../config/firebaseconfig";
+import Button from "../../components/Button/index.js";
+import styles from "./style.js";
 
 export default function EventDetails({ navigation, route }) {
 	const {
@@ -15,41 +16,42 @@ export default function EventDetails({ navigation, route }) {
 		userName,
 		icon,
 		userId,
-		idEvent,
+		id,
 		gifts,
 		avaiableGifts,
 		unavaiableGifts,
 	} = route.params;
-
 	const [store] = useStore();
 	const [giftItems, setGiftItems] = useState();
 	const [avaiable, setAvaiable] = useState(avaiableGifts);
 	const [unavaiable, setUnavaiable] = useState(unavaiableGifts);
 	const [disabled, setDisabled] = useState(false);
 
+	useEffect(() => {
+		if (giftItems) {
+			database
+				.collection("Eventos")
+				.doc(id)
+				.update({
+					avaiableGifts: firebase.firestore.FieldValue.arrayRemove(giftItems),
+					unavaiableGifts: firebase.firestore.FieldValue.arrayUnion(giftItems),
+				});
+		}
+	}, [updateGifts]);
+
 	function updateGifts(gift) {
-		// setDisabled(() => true);
+		setDisabled(() => true);
 
 		avaiableGifts.splice(avaiableGifts.indexOf(gift), 1);
 
 		setAvaiable(() => avaiableGifts);
 
-		if (unavaiableGifts == undefined) {
-			setUnavaiable(() => [gift]);
+		if (unavaiableGifts === undefined) {
+			setUnavaiable([gift]);
 		} else {
 			setUnavaiable((prev) => [...prev, gift]);
 		}
-
-		console.log(`--------atualizado--------`);
-		console.log("unavaiable dentro da funcao: ", unavaiable);
-
-		database.collection("Eventos").doc(idEvent).update({
-			avaiableGifts: avaiableGifts,
-			unavaiableGifts: unavaiable,
-		});
 	}
-
-	console.log("unavaiable fora da funcao: ", unavaiable);
 
 	return (
 		<View style={styles.container}>
@@ -57,6 +59,12 @@ export default function EventDetails({ navigation, route }) {
 			<EventInfo title={eventTitle} userName={userName} icon={icon} />
 
 			<Text style={styles.title}>Lista de desejo de presentes</Text>
+
+			{avaiable.length == 0 && (
+				<Text style={styles.label}>
+					Ops... Esse evento não possui mais presentes disponíveis para enviar.
+				</Text>
+			)}
 
 			<ScrollView
 				showsVerticalScrollIndicator={false}
@@ -66,6 +74,7 @@ export default function EventDetails({ navigation, route }) {
 					return (
 						avaiable.includes(produto.id) && (
 							<TouchableOpacity
+								activeOpacity={store.auth == userId ? 1 : 0.2}
 								style={styles.item}
 								key={produto.id}
 								onPress={() => {
@@ -81,19 +90,23 @@ export default function EventDetails({ navigation, route }) {
 									</Text>
 									<Text style={styles.precoProduto}>R${produto.price}</Text>
 								</View>
-
-								<TouchableOpacity>
-									<Heart
-										stroke="#EF476F"
-										fill={giftItems == produto.id ? "#EF476F" : "#fff"}
-										width={25}
-										height={25}
-									/>
-								</TouchableOpacity>
+								{/* SHOW HEART ICON IF USER IS NOT EVENT ORGANIZER */}
+								{store.auth != userId && (
+									<TouchableOpacity>
+										<Heart
+											stroke="#EF476F"
+											fill={giftItems == produto.id ? "#EF476F" : "#fff"}
+											width={25}
+											height={25}
+										/>
+									</TouchableOpacity>
+								)}
 							</TouchableOpacity>
 						)
 					);
 				})}
+
+				{/* SHOW UNAVAIABLE GIFTS */}
 				{unavaiable != undefined &&
 					produtos.map((produto) => {
 						return (
@@ -113,36 +126,40 @@ export default function EventDetails({ navigation, route }) {
 				<View style={{ height: 100 }} />
 			</ScrollView>
 
-			{/* BOTAO EDITAR */}
+			{/* EDIT BUTTON */}
 			{store.auth == userId && (
-				<TouchableOpacity
-					style={styles.editButton}
+				<Button
 					onPress={() => {
 						navigation.navigate("EditEvent", {
-							id: idEvent,
+							id: id,
 							name: eventTitle,
 							userName: userName,
 						});
 					}}
-				>
-					<Feather name="edit" color="#fff" size={20} />
-				</TouchableOpacity>
+					name="edit"
+					color="#fff"
+					size={20}
+					disabled={false}
+				/>
 			)}
 
-			{/* BOTAO PRESENTEAR */}
-			{store.auth != userId && !disabled && (
-				<TouchableOpacity
-					style={styles.editButton}
+			{/* GIFT BOTAO */}
+			{store.auth != userId && !disabled && avaiable.length != 0 && (
+				<Button
 					onPress={() => updateGifts(giftItems)}
-				>
-					<Feather name="gift" color="#fff" size={20} />
-				</TouchableOpacity>
+					name="gift"
+					color="#fff"
+					size={20}
+					disabled={false}
+				/>
 			)}
 
-			{store.auth != userId && disabled && (
-				<TouchableOpacity disabled style={styles.editButton}>
-					<Feather name="gift" color="#fff" size={20} />
-				</TouchableOpacity>
+			{/* DISABLE GIFT BUTTON */}
+			{((store.auth != userId && disabled && avaiable.length != 0) ||
+				(store.auth != userId &&
+					giftItems == undefined &&
+					avaiable.length != 0)) && (
+				<Button name="gift" color="#fff" size={20} disabled={true} />
 			)}
 		</View>
 	);

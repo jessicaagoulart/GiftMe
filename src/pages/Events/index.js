@@ -16,9 +16,6 @@ export default function Events({ navigation, route }) {
 	const [store] = useStore();
 
 	const [events, setEvents] = useState([]);
-	// function deleteEvent(id) {
-	// 	database.collection("Eventos").doc(id).delete();
-	// }
 
 	useEffect(() => {
 		database.collection("Eventos").onSnapshot((query) => {

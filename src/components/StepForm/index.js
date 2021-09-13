@@ -37,7 +37,7 @@ export default function StepForm({ userId }) {
 			userName: userName,
 			gifts: gifts,
 			avaiableGifts: gifts,
-			unavaibleGifts: [,],
+			unavaibleGifts: [],
 		});
 
 		navigation.navigate("Events");
@@ -100,7 +100,7 @@ export default function StepForm({ userId }) {
 
 					<Text style={styles.label}>Selecione um ícone para seu evento</Text>
 					<FlatList
-						contentContainerStyle={{ alignItems: "center", marginBottom: 20 }}
+						contentContainerStyle={{ alignItems: "center" }}
 						showsVerticalScrollIndicator={false}
 						numColumns={3}
 						data={DATA}
@@ -182,11 +182,9 @@ export default function StepForm({ userId }) {
 			)}
 
 			{/* MOSTRAR MENSAGEM DE ERRO */}
-			{page != 2 && (
-				<View style={{ height: 30 }}>
-					{error && <ErrorMessage message={message} />}
-				</View>
-			)}
+			<View style={{ height: 30 }}>
+				{error && <ErrorMessage message={message} />}
+			</View>
 
 			{/* BOTOES DE AVANCAR E VOLTAR */}
 			<View style={styles.containerStepsButton}>

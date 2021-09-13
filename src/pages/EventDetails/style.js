@@ -6,6 +6,11 @@ const styles = StyleSheet.create({
 		backgroundColor: "#fff",
 		paddingTop: 45,
 	},
+	label: {
+		marginBottom: 15,
+		paddingHorizontal: 30,
+		color: "#444",
+	},
 	title: {
 		fontSize: 18,
 		marginVertical: 15,
@@ -32,7 +37,6 @@ const styles = StyleSheet.create({
 	},
 	giftsContainer: {
 		width: "100%",
-		paddingHorizontal: 20,
 		flex: 1,
 		paddingBottom: 100,
 	},
@@ -40,19 +44,20 @@ const styles = StyleSheet.create({
 		justifyContent: "flex-start",
 		alignItems: "center",
 		flexDirection: "row",
-		width: "90%",
-		margin: 10,
+		width: "100%",
+		marginVertical: 10,
 	},
 	imagem: {
 		width: 70,
 		height: 70,
-		marginRight: 20,
+		marginHorizontal: 20,
 		resizeMode: "contain",
 	},
 	nomeProduto: {
 		fontSize: 18,
 		width: 200,
 		color: "#333",
+		marginRight: 5,
 	},
 	precoProduto: {
 		fontSize: 17,
