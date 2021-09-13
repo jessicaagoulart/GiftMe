@@ -9,6 +9,7 @@ import NewEvent from "./pages/NewEvent";
 import EventDetails from "./pages/EventDetails";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import MyEvents from "./pages/MyEvents";
 
 const Stack = createStackNavigator();
 
@@ -52,6 +53,13 @@ export default function App() {
 				<Stack.Screen
 					name="EventDetails"
 					component={EventDetails}
+					options={{
+						headerShown: false,
+					}}
+				/>
+				<Stack.Screen
+					name="MyEvents"
+					component={MyEvents}
 					options={{
 						headerShown: false,
 					}}

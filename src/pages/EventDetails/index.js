@@ -9,6 +9,7 @@ import { Heart } from "react-native-feather";
 import database from "../../config/firebaseconfig";
 import Button from "../../components/Button/index.js";
 import styles from "./style.js";
+import MyModal from "../../components/MyModal";
 
 export default function EventDetails({ navigation, route }) {
 	const {
@@ -17,7 +18,6 @@ export default function EventDetails({ navigation, route }) {
 		icon,
 		userId,
 		id,
-		gifts,
 		avaiableGifts,
 		unavaiableGifts,
 	} = route.params;
@@ -26,18 +26,10 @@ export default function EventDetails({ navigation, route }) {
 	const [avaiable, setAvaiable] = useState(avaiableGifts);
 	const [unavaiable, setUnavaiable] = useState(unavaiableGifts);
 	const [disabled, setDisabled] = useState(false);
-
-	useEffect(() => {
-		if (giftItems) {
-			database
-				.collection("Eventos")
-				.doc(id)
-				.update({
-					avaiableGifts: firebase.firestore.FieldValue.arrayRemove(giftItems),
-					unavaiableGifts: firebase.firestore.FieldValue.arrayUnion(giftItems),
-				});
-		}
-	}, [updateGifts]);
+	const [isModalVisible, setModalVisible] = useState(false);
+	const toggleModal = () => {
+		setModalVisible(!isModalVisible);
+	};
 
 	function updateGifts(gift) {
 		setDisabled(() => true);
@@ -51,6 +43,15 @@ export default function EventDetails({ navigation, route }) {
 		} else {
 			setUnavaiable((prev) => [...prev, gift]);
 		}
+		setModalVisible(!isModalVisible);
+
+		database
+			.collection("Eventos")
+			.doc(id)
+			.update({
+				avaiableGifts: firebase.firestore.FieldValue.arrayRemove(giftItems),
+				unavaiableGifts: firebase.firestore.FieldValue.arrayUnion(giftItems),
+			});
 	}
 
 	return (
@@ -60,6 +61,7 @@ export default function EventDetails({ navigation, route }) {
 
 			<Text style={styles.title}>Lista de desejo de presentes</Text>
 
+			{/* SHOW MESSAGE IF NO AVAIABLE GIFTS */}
 			{avaiable.length == 0 && (
 				<Text style={styles.label}>
 					Ops... Esse evento não possui mais presentes disponíveis para enviar.
@@ -78,9 +80,11 @@ export default function EventDetails({ navigation, route }) {
 								style={styles.item}
 								key={produto.id}
 								onPress={() => {
-									giftItems == produto.id
-										? setGiftItems(() => null)
-										: setGiftItems(() => produto.id);
+									if (store.auth != userId) {
+										giftItems == produto.id
+											? setGiftItems(() => null)
+											: setGiftItems(() => produto.id);
+									}
 								}}
 							>
 								<Image style={styles.imagem} source={produto.url} />
@@ -135,6 +139,7 @@ export default function EventDetails({ navigation, route }) {
 							id: id,
 							name: eventTitle,
 							userName: userName,
+							avaiableGifts,
 						});
 					}}
 					name="edit"
@@ -158,10 +163,23 @@ export default function EventDetails({ navigation, route }) {
 			{/* DISABLE GIFT BUTTON */}
 			{((store.auth != userId && disabled && avaiable.length != 0) ||
 				(store.auth != userId &&
-					giftItems == undefined &&
+					(giftItems == null || giftItems == undefined) &&
 					avaiable.length != 0)) && (
 				<Button name="gift" color="#fff" size={20} disabled={true} />
 			)}
+
+			{/* MODAL  */}
+			<MyModal
+				title="Voce acabou de reservar um presente"
+				isVisible={isModalVisible}
+				onPress1={() => {
+					setDisabled(() => false);
+					setGiftItems(null);
+					setModalVisible(!isModalVisible);
+				}}
+				button="Ok"
+				onBackdropPress={toggleModal}
+			/>
 		</View>
 	);
 }

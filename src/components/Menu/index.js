@@ -22,8 +22,23 @@ export default function Menu() {
 			</TouchableMenu>
 
 			<View style={isOpen ? styles.open : styles.close}>
-				<TouchableOpacity onPress={() => navigation.navigate("Events")}>
+				<TouchableOpacity
+					onPress={() => {
+						{
+							setIsOpen(!isOpen);
+							navigation.navigate("Events");
+						}
+					}}
+				>
 					<Text style={isOpen ? styles.item : styles.close}>Home</Text>
+				</TouchableOpacity>
+				<TouchableOpacity
+					onPress={() => {
+						setIsOpen(!isOpen);
+						navigation.navigate("MyEvents");
+					}}
+				>
+					<Text style={isOpen ? styles.item : styles.close}>Meus eventos</Text>
 				</TouchableOpacity>
 				<TouchableOpacity onPress={() => logout()}>
 					<Text style={isOpen ? styles.item : styles.close}>Logout</Text>

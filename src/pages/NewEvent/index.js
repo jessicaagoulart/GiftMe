@@ -1,6 +1,5 @@
 import React from "react";
 import { SafeAreaView } from "react-native";
-import database from "../../config/firebaseconfig";
 import styles from "../NewEvent/style";
 import StepForm from "../../components/StepForm";
 import Cabecalho from "../../components/Cabecalho";

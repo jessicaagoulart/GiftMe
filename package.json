@@ -19,7 +19,6 @@
 		"react-dom": "16.13.1",
 		"react-dynamic-import": "^1.1.5",
 		"react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
-		"react-native-dropdown-menu": "^2.0.0",
 		"react-native-feather": "^1.1.2",
 		"react-native-gesture-handler": "^1.10.3",
 		"react-native-modal": "^13.0.0",
