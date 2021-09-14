@@ -13,10 +13,9 @@ import DATA from "../../utils/data";
 import database from "../../config/firebaseconfig";
 import { useNavigation } from "@react-navigation/core";
 import ErrorMessage from "../ErrorMessage";
-import { useCallback } from "react";
 import { icons } from "../../utils/icons";
 import produtos from "../../utils/produtos";
-import { ValidationError } from "jest-validate";
+import Button from "../Button";
 
 export default function StepForm({ userId }) {
 	const navigation = useNavigation();
@@ -73,7 +72,7 @@ export default function StepForm({ userId }) {
 		<View style={styles.container}>
 			{/* STEP 1 */}
 			{page == 1 && (
-				<View style={styles.stepOne}>
+				<View style={styles.step}>
 					<Text style={styles.title}>Nome do Evento</Text>
 					<TextInput
 						style={styles.input}
@@ -93,7 +92,7 @@ export default function StepForm({ userId }) {
 
 			{/* STEP 2 */}
 			{page == 2 && (
-				<View style={styles.stepTwo}>
+				<View style={styles.step}>
 					<View style={styles.myIcon}>
 						<Image source={icon} resizeMode="contain" />
 					</View>
@@ -137,9 +136,10 @@ export default function StepForm({ userId }) {
 						data={produtos}
 						renderItem={({ item }) => (
 							<TouchableOpacity
+								activeOpacity={0.7}
 								style={
 									gifts.includes(item.id)
-										? styles.giftItemPressed
+										? [styles.giftItemPressed, styles.giftItem]
 										: styles.giftItem
 								}
 								onPress={() => {
@@ -171,6 +171,7 @@ export default function StepForm({ userId }) {
 
 					{/* BOTAO SALVAR */}
 					<TouchableOpacity
+						activeOpacity={0.7}
 						style={styles.saveButton}
 						onPress={() => {
 							addEvent();
@@ -190,6 +191,7 @@ export default function StepForm({ userId }) {
 			<View style={styles.containerStepsButton}>
 				{page == 1 ? (
 					<TouchableOpacity
+						activeOpacity={0.7}
 						style={styles.stepButton}
 						onPress={() => navigation.navigate("Events")}
 					>
@@ -197,6 +199,7 @@ export default function StepForm({ userId }) {
 					</TouchableOpacity>
 				) : (
 					<TouchableOpacity
+						activeOpacity={0.7}
 						style={styles.stepButton}
 						onPress={() => {
 							setError(() => false);
@@ -209,6 +212,7 @@ export default function StepForm({ userId }) {
 
 				{page != 4 && (
 					<TouchableOpacity
+						activeOpacity={0.7}
 						style={styles.stepButton}
 						onPress={() => {
 							validation(page);

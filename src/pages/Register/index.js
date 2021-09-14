@@ -72,11 +72,12 @@ export default function Register({ navigation }) {
 				maxLength={30}
 			></TextInput>
 
-			<View style={{ height: 30 }}>
+			<View style={{ height: 20 }}>
 				{error && <ErrorMessage message={message} />}
 			</View>
 
 			<TouchableOpacity
+				activeOpacity={0.7}
 				style={styles.buttonContainer}
 				onPress={() => {
 					if (password == "" || email == "") {
@@ -94,7 +95,10 @@ export default function Register({ navigation }) {
 				<Text style={styles.textButton}>Cadastrar</Text>
 			</TouchableOpacity>
 
-			<TouchableOpacity onPress={() => navigation.navigate("Login")}>
+			<TouchableOpacity
+				activeOpacity={0.7}
+				onPress={() => navigation.navigate("Login")}
+			>
 				<Text style={styles.link}>Já possuo cadastro</Text>
 			</TouchableOpacity>
 		</KeyboardAvoidingView>

@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { colors } from "../../utils/colors";
 
 const styles = StyleSheet.create({
 	modal: {
@@ -19,7 +20,7 @@ const styles = StyleSheet.create({
 		marginBottom: 10,
 	},
 	buttonModal: {
-		backgroundColor: "#EF476F",
+		backgroundColor: colors.mainPink,
 		width: 70,
 		marginHorizontal: 5,
 		borderRadius: 20,

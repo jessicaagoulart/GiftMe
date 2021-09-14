@@ -18,13 +18,21 @@ function MyModal({
 				<Text style={styles.textModal}>{title}</Text>
 				<View style={styles.buttonContainer}>
 					{button && (
-						<TouchableOpacity style={styles.buttonModal} onPress={onPress1}>
+						<TouchableOpacity
+							activeOpacity={0.7}
+							style={styles.buttonModal}
+							onPress={onPress1}
+						>
 							<Text style={styles.textButton}>{button}</Text>
 						</TouchableOpacity>
 					)}
 
 					{button2 && (
-						<TouchableOpacity style={styles.buttonModal} onPress={onPress2}>
+						<TouchableOpacity
+							activeOpacity={0.7}
+							style={styles.buttonModal}
+							onPress={onPress2}
+						>
 							<Text style={styles.textButton}>{button2}</Text>
 						</TouchableOpacity>
 					)}

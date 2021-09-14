@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { colors } from "../../utils/colors";
 
 const styles = StyleSheet.create({
 	container: {
@@ -8,7 +9,7 @@ const styles = StyleSheet.create({
 	},
 	input: {
 		width: "100%",
-		borderBottomColor: "#EF476F",
+		borderBottomColor: colors.mainPink,
 		borderBottomWidth: 1,
 		padding: 10,
 		height: 40,
@@ -54,7 +55,7 @@ const styles = StyleSheet.create({
 	stepButton: {
 		width: 70,
 		height: 35,
-		backgroundColor: "#EF476F",
+		backgroundColor: colors.mainPink,
 		justifyContent: "center",
 		alignItems: "center",
 		borderRadius: 30,
@@ -62,16 +63,24 @@ const styles = StyleSheet.create({
 	textButton: {
 		color: "#fff",
 	},
-	stepOne: {
+	step: {
 		flex: 1,
 		paddingHorizontal: 40,
 	},
-	stepTwo: {
+	step: {
 		flex: 1,
 		paddingHorizontal: 40,
 	},
 	stepThree: {
 		paddingVertical: 15,
+		flex: 1,
+		width: "100%",
+	},
+	stepFour: {
+		paddingHorizontal: 40,
+		paddingVertical: 15,
+		justifyContent: "center",
+		alignItems: "center",
 		flex: 1,
 		width: "100%",
 	},
@@ -87,21 +96,13 @@ const styles = StyleSheet.create({
 		width: 150,
 		height: 190,
 		borderRadius: 10,
-		backgroundColor: "#fff",
+		backgroundColor: colors.bgd,
 		justifyContent: "center",
 		alignItems: "center",
 	},
 	giftItemPressed: {
-		padding: 15,
-		margin: 10,
-		width: 150,
-		height: 190,
-		borderRadius: 10,
-		backgroundColor: "#fff",
-		justifyContent: "center",
-		alignItems: "center",
 		elevation: 5,
-		borderColor: "#EF476F",
+		borderColor: colors.mainPink,
 		borderWidth: 2,
 	},
 	giftTitle: {
@@ -117,18 +118,11 @@ const styles = StyleSheet.create({
 		color: "#666",
 		textAlign: "center",
 	},
-	stepFour: {
-		paddingHorizontal: 40,
-		paddingVertical: 15,
-		justifyContent: "center",
-		alignItems: "center",
-		flex: 1,
-		width: "100%",
-	},
+
 	saveButton: {
 		width: 120,
 		height: 40,
-		backgroundColor: "#EF476F",
+		backgroundColor: colors.mainPink,
 		justifyContent: "center",
 		alignItems: "center",
 		borderRadius: 30,

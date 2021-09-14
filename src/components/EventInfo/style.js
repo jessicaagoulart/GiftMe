@@ -1,16 +1,19 @@
 import { StyleSheet } from "react-native";
+import { colors } from "../../utils/colors";
 
 const styles = StyleSheet.create({
 	container: {
 		marginTop: 10,
 	},
 	contentEvent: {
-		width: "100%",
+		width: "95%",
 		backgroundColor: "#eee",
 		flexDirection: "row",
 		justifyContent: "flex-start",
 		alignItems: "center",
 		paddingVertical: 10,
+		alignSelf: "center",
+		borderRadius: 20,
 	},
 	containerDescription: {
 		alignItems: "flex-start",
@@ -29,7 +32,7 @@ const styles = StyleSheet.create({
 		fontSize: 15,
 	},
 	containerIcons: {
-		backgroundColor: "#fff",
+		backgroundColor: colors.bgd,
 		justifyContent: "center",
 		alignContent: "center",
 		borderRadius: 100,

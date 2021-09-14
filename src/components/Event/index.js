@@ -4,13 +4,13 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import styles from "./style";
 import Images from "../../components/Images";
 import { useNavigation } from "@react-navigation/core";
-import { useStore } from "../../store";
 
 export default function Event({ item }) {
 	const navigation = useNavigation();
 
 	return (
 		<TouchableOpacity
+			activeOpacity={0.7}
 			style={styles.contentEvent}
 			onPress={() => {
 				navigation.navigate("EventDetails", {

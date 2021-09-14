@@ -100,6 +100,7 @@ export default function Edit({ navigation, route }) {
 						data={produtos}
 						renderItem={({ item }) => (
 							<TouchableOpacity
+								activeOpacity={0.7}
 								style={
 									gifts.includes(item.id)
 										? styles.giftItemPressed
@@ -128,6 +129,7 @@ export default function Edit({ navigation, route }) {
 			{/* ADD ITEMS */}
 			{page == 1 && (
 				<TouchableOpacity
+					activeOpacity={0.7}
 					onPress={() => setPage(() => 2)}
 					style={styles.plusItems}
 				>

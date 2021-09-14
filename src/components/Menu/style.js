@@ -1,4 +1,5 @@
 import { StyleSheet, Dimensions } from "react-native";
+import { colors } from "../../utils/colors";
 
 const windowHeight = Dimensions.get("window").height;
 
@@ -29,7 +30,7 @@ const styles = StyleSheet.create({
 		paddingTop: 105,
 		paddingLeft: 10,
 		width: 200,
-		backgroundColor: "#EF476F",
+		backgroundColor: colors.mainPink,
 		color: "#fff",
 	},
 	close: {

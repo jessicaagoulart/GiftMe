@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { colors } from "../../utils/colors";
 
 const styles = StyleSheet.create({
 	container: {
@@ -6,18 +7,19 @@ const styles = StyleSheet.create({
 		width: "100%",
 		justifyContent: "center",
 		alignItems: "center",
+		backgroundColor: colors.bgd,
 	},
 	title: {
 		fontSize: 45,
 		fontWeight: "bold",
-		color: "#EF476F",
+		color: colors.mainPink,
 		marginBottom: 30,
 	},
 	input: {
 		height: 50,
 		width: 300,
 		fontSize: 15,
-		borderBottomColor: "#EF476F",
+		borderBottomColor: colors.mainPink,
 		borderBottomWidth: 1,
 		marginBottom: 10,
 	},
@@ -25,7 +27,7 @@ const styles = StyleSheet.create({
 		width: "40%",
 		justifyContent: "center",
 		alignItems: "center",
-		backgroundColor: "#EF476F",
+		backgroundColor: colors.mainPink,
 		padding: 15,
 		marginTop: 20,
 		borderRadius: 30,

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
 	View,
 	Text,
@@ -20,19 +20,25 @@ export default function Login({ navigation }) {
 	const [, { login }] = useAuth();
 
 	function loginFirebase() {
-		firebase
-			.auth()
-			.signInWithEmailAndPassword(email, password)
-			.then((userCredential) => {
-				let user = userCredential.user;
-				login(user.uid);
-				navigation.navigate("Events", { userId: user.uid });
-			})
-			.catch((error) => {
-				let errorCode = error.code;
-				setError(true);
-				setMessage("Verifique seu email ou senha");
-			});
+		if (password == "" || email == "") {
+			setError(true);
+			setMessage("Os campos são obrigatórios");
+		} else {
+			setError(false);
+			firebase
+				.auth()
+				.signInWithEmailAndPassword(email, password)
+				.then((userCredential) => {
+					let user = userCredential.user;
+					login(user.uid);
+					navigation.navigate("Events", { userId: user.uid });
+				})
+				.catch((error) => {
+					let errorCode = error.code;
+					setError(true);
+					setMessage("Verifique seu email ou senha");
+				});
+		}
 	}
 
 	return (
@@ -61,21 +67,17 @@ export default function Login({ navigation }) {
 			</View>
 
 			<TouchableOpacity
+				activeOpacity={0.7}
 				style={styles.buttonContainer}
-				onPress={() => {
-					if (password == "" || email == "") {
-						setError(true);
-						setMessage("Os campos são obrigatórios");
-					} else {
-						setError(false);
-						loginFirebase();
-					}
-				}}
+				onPress={() => loginFirebase()}
 			>
 				<Text style={styles.textButton}>Logar</Text>
 			</TouchableOpacity>
 
-			<TouchableOpacity onPress={() => navigation.navigate("Register")}>
+			<TouchableOpacity
+				activeOpacity={0.7}
+				onPress={() => navigation.navigate("Register")}
+			>
 				<Text style={styles.link}>Cadastre-se</Text>
 			</TouchableOpacity>
 		</KeyboardAvoidingView>

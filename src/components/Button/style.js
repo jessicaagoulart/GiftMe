@@ -1,8 +1,9 @@
 import { StyleSheet } from "react-native";
+import { colors } from "../../utils/colors";
 
 const styles = StyleSheet.create({
 	editButton: {
-		backgroundColor: "#EF476F",
+		backgroundColor: colors.mainPink,
 		position: "absolute",
 		bottom: 30,
 		left: 20,

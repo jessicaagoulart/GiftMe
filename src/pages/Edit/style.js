@@ -1,9 +1,10 @@
 import { StyleSheet } from "react-native";
+import { colors } from "../../utils/colors";
 
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: "#fff",
+		backgroundColor: colors.bgd,
 		paddingTop: 45,
 	},
 	containerForm: {
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
 	},
 	input: {
 		width: "100%",
-		borderBottomColor: "#EF476F",
+		borderBottomColor: colors.mainPink,
 		borderBottomWidth: 1,
 		padding: 10,
 		height: 40,
@@ -78,13 +79,13 @@ const styles = StyleSheet.create({
 		marginBottom: 10,
 	},
 	buttonModal: {
-		backgroundColor: "#EF476F",
+		backgroundColor: colors.mainPink,
 		width: 70,
 		marginHorizontal: 5,
 		borderRadius: 20,
 	},
 	plusItems: {
-		backgroundColor: "#EF476F",
+		backgroundColor: colors.mainPink,
 		marginTop: 30,
 		paddingVertical: 10,
 		borderRadius: 20,
@@ -107,7 +108,7 @@ const styles = StyleSheet.create({
 		width: 150,
 		height: 190,
 		borderRadius: 10,
-		backgroundColor: "#fff",
+		backgroundColor: colors.bgd,
 		justifyContent: "center",
 		alignItems: "center",
 	},
@@ -117,11 +118,11 @@ const styles = StyleSheet.create({
 		width: 150,
 		height: 190,
 		borderRadius: 10,
-		backgroundColor: "#fff",
+		backgroundColor: colors.bgd,
 		justifyContent: "center",
 		alignItems: "center",
 		elevation: 5,
-		borderColor: "#EF476F",
+		borderColor: colors.mainPink,
 		borderWidth: 2,
 	},
 	giftTitle: {

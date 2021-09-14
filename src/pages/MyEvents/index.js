@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, TouchableOpacity, FlatList } from "react-native";
+import { View, FlatList } from "react-native";
 import database from "../../config/firebaseconfig";
 import styles from "./style";
 import Cabecalho from "../../components/Cabecalho";
 import Event from "../../components/Event";
 import { useStore } from "../../store";
+import Button from "../../components/Button";
 
 export default function MyEvents({ navigation }) {
 	const [store] = useStore();
@@ -37,12 +38,12 @@ export default function MyEvents({ navigation }) {
 				ListFooterComponent={<View style={{ padding: 60 }} />}
 			/>
 
-			<TouchableOpacity
-				style={styles.button}
+			<Button
+				name="plus"
+				color="#fff"
+				size={20}
 				onPress={() => navigation.navigate("NewEvent", { userId: store.auth })}
-			>
-				<Text style={styles.plus}>+</Text>
-			</TouchableOpacity>
+			/>
 		</View>
 	);
 }

@@ -76,7 +76,8 @@ export default function EventDetails({ navigation, route }) {
 					return (
 						avaiable.includes(produto.id) && (
 							<TouchableOpacity
-								activeOpacity={store.auth == userId ? 1 : 0.2}
+								activeOpacity={0.7}
+								disabled={store.auth == userId ? true : false}
 								style={styles.item}
 								key={produto.id}
 								onPress={() => {
@@ -97,14 +98,12 @@ export default function EventDetails({ navigation, route }) {
 
 								{/* SHOW HEART ICON IF USER IS NOT EVENT ORGANIZER */}
 								{store.auth != userId && (
-									<TouchableOpacity>
-										<Heart
-											stroke="#EF476F"
-											fill={giftItems == produto.id ? "#EF476F" : "#fff"}
-											width={25}
-											height={25}
-										/>
-									</TouchableOpacity>
+									<Heart
+										stroke="#EF476F"
+										fill={giftItems == produto.id ? "#EF476F" : "#fff"}
+										width={25}
+										height={25}
+									/>
 								)}
 							</TouchableOpacity>
 						)

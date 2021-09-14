@@ -5,6 +5,7 @@ import styles from "./style";
 import { Feather } from "@expo/vector-icons";
 import { useAuth } from "../../auth";
 import { useNavigation } from "@react-navigation/core";
+import { colors } from "../../utils/colors";
 
 export default function Menu() {
 	const [isOpen, setIsOpen] = useState(false);
@@ -15,7 +16,7 @@ export default function Menu() {
 		<View style={styles.container}>
 			<TouchableMenu style={styles.menu} onPress={() => setIsOpen(!isOpen)}>
 				{!isOpen ? (
-					<Feather name="menu" size={25} color="#333" />
+					<Feather name="menu" size={25} color={colors.mainPink} />
 				) : (
 					<Feather name="x" size={25} color="#fff" />
 				)}

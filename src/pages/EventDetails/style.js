@@ -1,9 +1,10 @@
 import { StyleSheet } from "react-native";
+import { colors } from "../../utils/colors";
 
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: "#fff",
+		backgroundColor: colors.bgd,
 		paddingTop: 45,
 	},
 	label: {
@@ -22,7 +23,7 @@ const styles = StyleSheet.create({
 		marginTop: 10,
 	},
 	editButton: {
-		backgroundColor: "#EF476F",
+		backgroundColor: colors.mainPink,
 		position: "absolute",
 		bottom: 30,
 		left: 20,
@@ -46,6 +47,7 @@ const styles = StyleSheet.create({
 		flexDirection: "row",
 		width: "100%",
 		marginVertical: 10,
+		marginHorizontal: 10,
 	},
 	imagem: {
 		width: 70,
@@ -65,7 +67,7 @@ const styles = StyleSheet.create({
 		color: "#444",
 	},
 	buttonPresentear: {
-		backgroundColor: "#EF476F",
+		backgroundColor: colors.mainPink,
 		width: 100,
 		height: 40,
 		justifyContent: "center",
@@ -76,7 +78,7 @@ const styles = StyleSheet.create({
 		textAlign: "center",
 	},
 	heart: {
-		backgroundColor: "#fff",
+		backgroundColor: colors.bgd,
 		alignItems: "center",
 	},
 	heartPressed: {
