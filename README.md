@@ -45,7 +45,7 @@ O projeto é um aplicativo de lista de desejo de presentes, onde os usuários po
 
 <br/>
 
-:heavy_plus_sign:__Migrar a utilização de ContextAPI no app para Redux
+:heavy_plus_sign:__Aplicar Redux
 
 :heavy_plus_sign:__Migrar dados mocados de lista de produtos para presente para consumo de API <br/><br/>
 
@@ -53,8 +53,6 @@ O projeto é um aplicativo de lista de desejo de presentes, onde os usuários po
 # :white_medium_small_square: Bônus de funcionalidades do App :white_medium_small_square:
 
 <br/>
-
-:heavy_plus_sign:__Adicionar convidados na criação de um evento, restringindo a visualização de cada evento apenas para convidados
 
 :heavy_plus_sign:__Limitar quantidade de cada item na lista de presente para a pessoa não receber presentes repetidos
 
