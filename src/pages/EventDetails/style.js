@@ -49,6 +49,15 @@ const styles = StyleSheet.create({
 		marginVertical: 10,
 		marginHorizontal: 10,
 	},
+	disabled: {
+		justifyContent: "flex-start",
+		alignItems: "center",
+		flexDirection: "row",
+		width: "100%",
+		marginVertical: 10,
+		marginHorizontal: 10,
+		opacity: 0.6,
+	},
 	imagem: {
 		width: 70,
 		height: 70,

@@ -6,6 +6,7 @@ import { Feather } from "@expo/vector-icons";
 import { useAuth } from "../../auth";
 import { useNavigation } from "@react-navigation/core";
 import { colors } from "../../utils/colors";
+import { useStore } from "../../store";
 
 export default function Menu() {
 	const [isOpen, setIsOpen] = useState(false);

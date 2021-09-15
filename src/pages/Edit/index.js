@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
 	View,
 	Text,
@@ -20,19 +20,40 @@ import MyModal from "../../components/MyModal";
 export default function Edit({ navigation, route }) {
 	const [eventTitleEdit, setEventTitleEdit] = useState(route.params.name);
 	const [userNameEdit, setUserNameEdit] = useState(route.params.userName);
-	const { avaiableGifts } = route.params;
+	const { avaiableGifts, unavaiableGifts } = route.params;
 	const [error, setError] = useState(false);
 	const idEvent = route.params.id;
 	const [isModalVisible, setModalVisible] = useState(false);
 	const [page, setPage] = useState(1);
 	const [gifts, setGifts] = useState([]);
+	const [newData, setNewData] = useState([]);
+
+	useEffect(() => {
+		console.log(route.params);
+		console.log("unavaiableGifts antes: ", unavaiableGifts);
+		console.log("avaiable antes: ", avaiableGifts);
+		let list = [];
+		for (let i = 0; i < produtos.length; i++) {
+			if (!avaiableGifts.includes(produtos[i].id)) {
+				list.push(produtos[i]);
+			}
+		}
+		setNewData(list);
+	}, []);
 
 	function editEvent() {
+		for (let i = 0; i < gifts.length; i++) {
+			if (unavaiableGifts.includes(gifts[i])) {
+				unavaiableGifts.splice(unavaiableGifts.indexOf(gifts[i]), 1);
+			}
+		}
+
 		let newAvaiableArray = avaiableGifts.concat(gifts);
 
 		database.collection("Eventos").doc(idEvent).update({
 			eventTitle: eventTitleEdit,
 			avaiableGifts: newAvaiableArray,
+			unavaiableGifts: unavaiableGifts,
 		});
 		navigation.navigate("Events");
 	}
@@ -95,33 +116,36 @@ export default function Edit({ navigation, route }) {
 						contentContainerStyle={{
 							alignItems: "center",
 						}}
+						ListFooterComponent={<View style={{ height: 50 }} />}
 						showsVerticalScrollIndicator={false}
 						numColumns={2}
-						data={produtos}
-						renderItem={({ item }) => (
-							<TouchableOpacity
-								activeOpacity={0.7}
-								style={
-									gifts.includes(item.id)
-										? styles.giftItemPressed
-										: styles.giftItem
-								}
-								onPress={() => {
-									gifts.includes(item.id)
-										? setGifts(gifts.filter((gift) => gift !== item.id))
-										: setGifts((prev) => [...prev, item.id]);
-								}}
-							>
-								<View>
-									<Image style={styles.giftsImg} source={item.url} />
-									<Text style={styles.giftTitle} numberOfLines={2}>
-										{item.name}
-									</Text>
-									<Text style={styles.giftPrice}>R$ {item.price}</Text>
-								</View>
-							</TouchableOpacity>
-						)}
-						keyExtractor={(item) => item.name}
+						data={newData}
+						renderItem={({ item }) => {
+							return (
+								<TouchableOpacity
+									activeOpacity={0.7}
+									style={
+										gifts.includes(item.id)
+											? styles.giftItemPressed
+											: styles.giftItem
+									}
+									onPress={() => {
+										gifts.includes(item.id)
+											? setGifts(gifts.filter((gift) => gift !== item.id))
+											: setGifts((prev) => [...prev, item.id]);
+									}}
+								>
+									<View>
+										<Image style={styles.giftsImg} source={item.url} />
+										<Text style={styles.giftTitle} numberOfLines={2}>
+											{item.name}
+										</Text>
+										<Text style={styles.giftPrice}>R$ {item.price}</Text>
+									</View>
+								</TouchableOpacity>
+							);
+						}}
+						keyExtractor={(item) => item.id}
 					/>
 				</View>
 			)}

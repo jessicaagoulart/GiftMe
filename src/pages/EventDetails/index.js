@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, TouchableOpacity, ScrollView, Image } from "react-native";
+import { View, Text, TouchableOpacity, FlatList, Image } from "react-native";
 import Cabecalho from "../../components/Cabecalho/index.js";
 import EventInfo from "../../components/EventInfo/index.js";
 import firebase from "firebase";
@@ -31,27 +31,45 @@ export default function EventDetails({ navigation, route }) {
 		setModalVisible(!isModalVisible);
 	};
 
-	function updateGifts(gift) {
+	useEffect(() => {
+		if (giftItems) {
+			database
+				.collection("Eventos")
+				.doc(id)
+				.update({
+					avaiableGifts: firebase.firestore.FieldValue.arrayRemove(giftItems),
+					unavaiableGifts: firebase.firestore.FieldValue.arrayUnion(giftItems),
+				});
+		}
+	}, [updateGifts]);
+
+	function updateGifts() {
 		setDisabled(() => true);
 
-		avaiableGifts.splice(avaiableGifts.indexOf(gift), 1);
+		console.log("gift:", giftItems);
+		console.log("unavaiableItems:", unavaiable);
+		avaiableGifts.splice(avaiableGifts.indexOf(giftItems), 1);
 
 		setAvaiable(() => avaiableGifts);
 
 		if (unavaiableGifts === undefined) {
-			setUnavaiable([gift]);
+			setUnavaiable([giftItems]);
 		} else {
-			setUnavaiable((prev) => [...prev, gift]);
+			setUnavaiable((prev) => [...prev, giftItems]);
 		}
-		setModalVisible(!isModalVisible);
 
-		database
-			.collection("Eventos")
-			.doc(id)
-			.update({
-				avaiableGifts: firebase.firestore.FieldValue.arrayRemove(giftItems),
-				unavaiableGifts: firebase.firestore.FieldValue.arrayUnion(giftItems),
-			});
+		setModalVisible(!isModalVisible);
+	}
+
+	// ORDENAR PRODUTOS DISPONIVEIS PRIMEIRO
+	function sortData() {
+		let sortedProductsArray = [];
+		produtos.forEach((produto) =>
+			avaiable.includes(produto.id)
+				? (sortedProductsArray = [produto, ...sortedProductsArray])
+				: sortedProductsArray.push(produto)
+		);
+		return sortedProductsArray;
 	}
 
 	return (
@@ -68,67 +86,67 @@ export default function EventDetails({ navigation, route }) {
 				</Text>
 			)}
 
-			<ScrollView
+			<FlatList
 				showsVerticalScrollIndicator={false}
-				style={styles.giftsContainer}
-			>
-				{produtos.map((produto) => {
-					return (
-						avaiable.includes(produto.id) && (
+				data={sortData()}
+				keyExtractor={(item) => item.id.toString()}
+				ListFooterComponent={<View style={{ height: 100 }} />}
+				renderItem={({ item }) => {
+					if (
+						(unavaiable && unavaiable.includes(item.id)) ||
+						(avaiable && avaiable.includes(item.id))
+					) {
+						return (
 							<TouchableOpacity
 								activeOpacity={0.7}
-								disabled={store.auth == userId ? true : false}
-								style={styles.item}
-								key={produto.id}
+								disabled={
+									store.auth == userId ||
+									(unavaiable && unavaiable.includes(item.id))
+										? true
+										: false
+								}
+								style={
+									unavaiable && unavaiable.includes(item.id)
+										? styles.disabled
+										: styles.item
+								}
+								key={item.id}
 								onPress={() => {
 									if (store.auth != userId) {
-										giftItems == produto.id
+										giftItems == item.id
 											? setGiftItems(() => null)
-											: setGiftItems(() => produto.id);
+											: setGiftItems(() => item.id);
 									}
 								}}
 							>
-								<Image style={styles.imagem} source={produto.url} />
+								<Image style={styles.imagem} source={item.url} />
 								<View>
 									<Text numberOfLines={1} style={styles.nomeProduto}>
-										{produto.name}
+										{item.name}
 									</Text>
-									<Text style={styles.precoProduto}>R${produto.price}</Text>
+									<Text style={styles.precoProduto}>R${item.price}</Text>
 								</View>
 
 								{/* SHOW HEART ICON IF USER IS NOT EVENT ORGANIZER */}
-								{store.auth != userId && (
-									<Heart
-										stroke="#EF476F"
-										fill={giftItems == produto.id ? "#EF476F" : "#fff"}
-										width={25}
-										height={25}
-									/>
+								{store.auth != userId ? (
+									avaiableGifts && avaiableGifts.includes(item.id) ? (
+										<Heart
+											stroke="#EF476F"
+											fill={giftItems == item.id ? "#EF476F" : "#fff"}
+											width={25}
+											height={25}
+										/>
+									) : (
+										<></>
+									)
+								) : (
+									<></>
 								)}
 							</TouchableOpacity>
-						)
-					);
-				})}
-
-				{/* SHOW UNAVAIABLE GIFTS */}
-				{unavaiable != undefined &&
-					produtos.map((produto) => {
-						return (
-							unavaiable.includes(produto.id) && (
-								<View style={styles.itemDisable} key={produto.id}>
-									<Image style={styles.imagem} source={produto.url} />
-									<View>
-										<Text numberOfLines={1} style={styles.nomeProduto}>
-											{produto.name}
-										</Text>
-										<Text style={styles.precoProduto}>R${produto.price}</Text>
-									</View>
-								</View>
-							)
 						);
-					})}
-				<View style={{ height: 100 }} />
-			</ScrollView>
+					}
+				}}
+			/>
 
 			{/* EDIT BUTTON */}
 			{store.auth == userId && (
@@ -138,7 +156,8 @@ export default function EventDetails({ navigation, route }) {
 							id: id,
 							name: eventTitle,
 							userName: userName,
-							avaiableGifts,
+							avaiableGifts: avaiable,
+							unavaiableGifts: unavaiable,
 						});
 					}}
 					name="edit"
