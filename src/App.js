@@ -10,6 +10,7 @@ import EventDetails from "./pages/EventDetails";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import MyEvents from "./pages/MyEvents";
+import Initial from "./pages/Initial";
 
 const Stack = createStackNavigator();
 
@@ -66,7 +67,7 @@ export default function App() {
 				/>
 			</Stack.Navigator>
 		) : (
-			<Stack.Navigator initialRouteName="Events">
+			<Stack.Navigator initialRouteName="Login">
 				<Stack.Screen
 					name="Login"
 					component={Login}
