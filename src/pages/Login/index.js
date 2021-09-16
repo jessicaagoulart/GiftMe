@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
 	View,
 	Text,
@@ -6,6 +6,7 @@ import {
 	TouchableOpacity,
 	KeyboardAvoidingView,
 } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useState } from "react";
 import ErrorMessage from "../../components/ErrorMessage";
 import styles from "./style";
@@ -19,6 +20,14 @@ export default function Login({ navigation }) {
 	const [password, setPassword] = useState("");
 	const [, { login }] = useAuth();
 
+	const storeData = async (value) => {
+		try {
+			await AsyncStorage.setItem("@gift_user", value);
+		} catch (e) {
+			// saving error
+		}
+	};
+
 	function loginFirebase() {
 		if (password == "" || email == "") {
 			setError(true);
@@ -31,6 +40,7 @@ export default function Login({ navigation }) {
 				.then((userCredential) => {
 					let user = userCredential.user;
 					login(user.uid);
+					storeData(user.email);
 					navigation.navigate("Events", { userId: user.uid });
 				})
 				.catch((error) => {

@@ -27,7 +27,7 @@ export default function MyEvents({ navigation }) {
 
 	return (
 		<View style={styles.container}>
-			<Cabecalho title="Meus Eventos" />
+			<Cabecalho title="Meus Eventos" goBack />
 			<FlatList
 				showsVerticalScrollIndicator={false}
 				data={events}

@@ -7,7 +7,7 @@ import Cabecalho from "../../components/Cabecalho";
 export default function NewEvent({ route }) {
 	return (
 		<SafeAreaView style={styles.container}>
-			<Cabecalho title="Meu evento" />
+			<Cabecalho title="Meu evento" goBack />
 			<StepForm userId={route.params.userId} />
 		</SafeAreaView>
 	);

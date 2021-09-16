@@ -8,12 +8,18 @@ const styles = StyleSheet.create({
 		justifyContent: "space-between",
 		alignItems: "center",
 		paddingVertical: 20,
-		paddingHorizontal: 40,
+		paddingRight: 40,
+		paddingLeft: 20,
 	},
 	title: {
 		fontSize: 25,
+		marginLeft: 10,
 		fontWeight: "bold",
 		color: colors.mainPink,
+	},
+	containerInside: {
+		flexDirection: "row",
+		alignItems: "center",
 	},
 });
 

@@ -29,9 +29,6 @@ export default function Edit({ navigation, route }) {
 	const [newData, setNewData] = useState([]);
 
 	useEffect(() => {
-		console.log(route.params);
-		console.log("unavaiableGifts antes: ", unavaiableGifts);
-		console.log("avaiable antes: ", avaiableGifts);
 		let list = [];
 		for (let i = 0; i < produtos.length; i++) {
 			if (!avaiableGifts.includes(produtos[i].id)) {
@@ -42,19 +39,29 @@ export default function Edit({ navigation, route }) {
 	}, []);
 
 	function editEvent() {
-		for (let i = 0; i < gifts.length; i++) {
-			if (unavaiableGifts.includes(gifts[i])) {
-				unavaiableGifts.splice(unavaiableGifts.indexOf(gifts[i]), 1);
+		var newAvaiableArray = avaiableGifts.concat(gifts);
+
+		// DELETAR OS NOVOS ITENS SE ESTIVEREM NO ARRAY DE INDISPONIVEIS
+		if (unavaiableGifts !== undefined) {
+			for (let i = 0; i < gifts.length; i++) {
+				if (unavaiableGifts.includes(gifts[i])) {
+					unavaiableGifts.splice(unavaiableGifts.indexOf(gifts[i]), 1);
+				}
 			}
 		}
 
-		let newAvaiableArray = avaiableGifts.concat(gifts);
-
-		database.collection("Eventos").doc(idEvent).update({
-			eventTitle: eventTitleEdit,
-			avaiableGifts: newAvaiableArray,
-			unavaiableGifts: unavaiableGifts,
-		});
+		if (unavaiableGifts === undefined) {
+			database.collection("Eventos").doc(idEvent).update({
+				eventTitle: eventTitleEdit,
+				avaiableGifts: newAvaiableArray,
+			});
+		} else {
+			database.collection("Eventos").doc(idEvent).update({
+				eventTitle: eventTitleEdit,
+				avaiableGifts: newAvaiableArray,
+				unavaiableGifts: unavaiableGifts,
+			});
+		}
 		navigation.navigate("Events");
 	}
 
@@ -70,7 +77,7 @@ export default function Edit({ navigation, route }) {
 
 	return (
 		<View style={styles.container}>
-			<Cabecalho title="Editar Eventos" />
+			<Cabecalho title="Editar Eventos" goBack />
 
 			{/* STEP ONE */}
 			{page == 1 && (
@@ -150,7 +157,7 @@ export default function Edit({ navigation, route }) {
 				</View>
 			)}
 
-			{/* ADD ITEMS */}
+			{/* ADD ITEMS BUTTON */}
 			{page == 1 && (
 				<TouchableOpacity
 					activeOpacity={0.7}
@@ -183,7 +190,6 @@ export default function Edit({ navigation, route }) {
 			/>
 
 			{/* DELETE BUTTON */}
-
 			{page == 1 && (
 				<Pressable
 					style={styles.deleteButton}

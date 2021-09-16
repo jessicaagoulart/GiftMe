@@ -6,12 +6,26 @@ import { Feather } from "@expo/vector-icons";
 import { useAuth } from "../../auth";
 import { useNavigation } from "@react-navigation/core";
 import { colors } from "../../utils/colors";
-import { useStore } from "../../store";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Menu() {
 	const [isOpen, setIsOpen] = useState(false);
 	const [, { logout }] = useAuth();
 	const navigation = useNavigation();
+	const [email, setEmail] = useState("");
+
+	const getData = async () => {
+		try {
+			const value = await AsyncStorage.getItem("@gift_user");
+			if (value !== null) {
+				setEmail(() => value);
+			}
+		} catch (e) {
+			// error reading value
+		}
+	};
+
+	getData();
 
 	return (
 		<View style={styles.container}>
@@ -45,6 +59,10 @@ export default function Menu() {
 				<TouchableOpacity onPress={() => logout()}>
 					<Text style={isOpen ? styles.item : styles.close}>Logout</Text>
 				</TouchableOpacity>
+
+				<Text numberOfLines={1} style={styles.user}>
+					{email}
+				</Text>
 			</View>
 		</View>
 	);

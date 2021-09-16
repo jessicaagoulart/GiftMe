@@ -74,7 +74,7 @@ export default function EventDetails({ navigation, route }) {
 
 	return (
 		<View style={styles.container}>
-			<Cabecalho title="Detalhes do Evento" />
+			<Cabecalho title="Detalhes do Evento" goBack />
 			<EventInfo title={eventTitle} userName={userName} icon={icon} />
 
 			<Text style={styles.title}>Lista de desejo de presentes</Text>

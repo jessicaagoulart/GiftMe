@@ -26,6 +26,7 @@ export default function Register({ navigation }) {
 			.then((userCredential) => {
 				setError(false);
 				let user = userCredential.user;
+				console.log(user);
 
 				navigation.navigate("Login");
 			})

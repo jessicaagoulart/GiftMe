@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
 		width: 200,
 		backgroundColor: colors.mainPink,
 		color: "#fff",
+		flex: 1,
 	},
 	close: {
 		height: windowHeight + 100,
@@ -44,6 +45,13 @@ const styles = StyleSheet.create({
 		margin: 3,
 		marginVertical: 8,
 		color: "#fff",
+	},
+	user: {
+		color: "#fff",
+		fontSize: 14,
+		width: 150,
+		marginTop: windowHeight - 200,
+		marginLeft: 10,
 	},
 });
 
