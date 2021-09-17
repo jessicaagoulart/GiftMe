@@ -41,6 +41,16 @@ const styles = StyleSheet.create({
 		fontSize: 15,
 		marginTop: 25,
 	},
+	rememberMe: {
+		flexDirection: "row",
+		marginTop: 5,
+		justifyContent: "space-between",
+		width: 300,
+	},
+	textRememberMe: {
+		fontSize: 15,
+		color: "#444",
+	},
 });
 
 export default styles;

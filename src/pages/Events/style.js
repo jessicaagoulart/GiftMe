@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
 	},
 	containerSearch: {
 		marginHorizontal: 10,
-		backgroundColor: colors.secondPink,
+		backgroundColor: colors.mainPink,
 		paddingHorizontal: 20,
 		paddingVertical: 10,
 		borderRadius: 10,

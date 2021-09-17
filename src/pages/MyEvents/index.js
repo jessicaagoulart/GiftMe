@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { View, FlatList } from "react-native";
+import { View, FlatList, Text } from "react-native";
 import database from "../../config/firebaseconfig";
 import styles from "./style";
 import Cabecalho from "../../components/Cabecalho";
 import Event from "../../components/Event";
 import { useStore } from "../../store";
-import Button from "../../components/Button";
+import IconButton from "../../components/IconButton";
+import { Frown } from "react-native-feather";
 
 export default function MyEvents({ navigation }) {
 	const [store] = useStore();
@@ -28,6 +29,16 @@ export default function MyEvents({ navigation }) {
 	return (
 		<View style={styles.container}>
 			<Cabecalho title="Meus Eventos" goBack />
+
+			{events.length === 0 && (
+				<View style={styles.containerMessage}>
+					<Text style={styles.textMessage}>
+						Você não possui evento cadastrado
+					</Text>
+					<Frown stroke="#888" />
+				</View>
+			)}
+
 			<FlatList
 				showsVerticalScrollIndicator={false}
 				data={events}
@@ -38,7 +49,7 @@ export default function MyEvents({ navigation }) {
 				ListFooterComponent={<View style={{ padding: 60 }} />}
 			/>
 
-			<Button
+			<IconButton
 				name="plus"
 				color="#fff"
 				size={20}

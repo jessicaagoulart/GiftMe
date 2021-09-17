@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
 	},
 	nomeProduto: {
 		fontSize: 18,
-		width: 200,
+		width: 190,
 		color: "#333",
 		marginRight: 5,
 	},

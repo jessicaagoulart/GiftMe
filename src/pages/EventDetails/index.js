@@ -7,7 +7,7 @@ import { useStore } from "../../store.js";
 import produtos from "../../utils/produtos.js";
 import { Heart } from "react-native-feather";
 import database from "../../config/firebaseconfig";
-import Button from "../../components/Button/index.js";
+import IconButton from "../../components/IconButton/index.js";
 import styles from "./style.js";
 import MyModal from "../../components/MyModal";
 
@@ -150,7 +150,7 @@ export default function EventDetails({ navigation, route }) {
 
 			{/* EDIT BUTTON */}
 			{store.auth == userId && (
-				<Button
+				<IconButton
 					onPress={() => {
 						navigation.navigate("EditEvent", {
 							id: id,
@@ -169,7 +169,7 @@ export default function EventDetails({ navigation, route }) {
 
 			{/* GIFT BOTAO */}
 			{store.auth != userId && !disabled && avaiable.length != 0 && (
-				<Button
+				<IconButton
 					onPress={() => updateGifts(giftItems)}
 					name="gift"
 					color="#fff"
@@ -183,7 +183,7 @@ export default function EventDetails({ navigation, route }) {
 				(store.auth != userId &&
 					(giftItems == null || giftItems == undefined) &&
 					avaiable.length != 0)) && (
-				<Button name="gift" color="#fff" size={20} disabled={true} />
+				<IconButton name="gift" color="#fff" size={20} disabled={true} />
 			)}
 
 			{/* MODAL  */}

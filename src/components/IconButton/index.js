@@ -3,7 +3,7 @@ import { TouchableOpacity } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import styles from "./style";
 
-function Button({ name, color, size, disabled, onPress }) {
+function IconButton({ name, color, size, disabled, onPress }) {
 	return (
 		<TouchableOpacity
 			activeOpacity={0.7}
@@ -16,4 +16,4 @@ function Button({ name, color, size, disabled, onPress }) {
 	);
 }
 
-export default Button;
+export default IconButton;

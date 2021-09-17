@@ -12,7 +12,7 @@ import database from "../../config/firebaseconfig";
 import styles from "./style.js";
 import Cabecalho from "../../components/Cabecalho";
 import ErrorMessage from "../../components/ErrorMessage";
-import Button from "../../components/Button";
+import IconButton from "../../components/IconButton";
 import { Trash } from "react-native-feather";
 import produtos from "../../utils/produtos";
 import MyModal from "../../components/MyModal";
@@ -53,11 +53,13 @@ export default function Edit({ navigation, route }) {
 		if (unavaiableGifts === undefined) {
 			database.collection("Eventos").doc(idEvent).update({
 				eventTitle: eventTitleEdit,
+				userName: userNameEdit,
 				avaiableGifts: newAvaiableArray,
 			});
 		} else {
 			database.collection("Eventos").doc(idEvent).update({
 				eventTitle: eventTitleEdit,
+				userName: userNameEdit,
 				avaiableGifts: newAvaiableArray,
 				unavaiableGifts: unavaiableGifts,
 			});
@@ -176,7 +178,7 @@ export default function Edit({ navigation, route }) {
 			</View>
 
 			{/* SAVE BUTTON */}
-			<Button
+			<IconButton
 				onPress={() => {
 					if (userNameEdit == "" || eventTitleEdit == "") {
 						setError(true);

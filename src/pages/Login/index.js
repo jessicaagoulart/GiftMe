@@ -7,16 +7,19 @@ import {
 	KeyboardAvoidingView,
 	Animated,
 	StyleSheet,
-	Easing,
+	Switch,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useState, useRef, useEffect } from "react";
-import ErrorMessage from "../../components/ErrorMessage";
-import styles from "./style";
-import firebase from "firebase";
-import { useAuth } from "../../auth";
-import Lottie from "lottie-react-native";
 import animation from "../../assets/animation/animation.json";
+import ErrorMessage from "../../components/ErrorMessage";
+import PasswordInput from "../../components/PasswordInput";
+import EmailInput from "../../components/EmailInput";
+import Lottie from "lottie-react-native";
+import { useAuth } from "../../auth";
+import firebase from "firebase";
+import styles from "./style";
+import { colors } from "../../utils/colors";
 
 export default function Login({ navigation }) {
 	const [error, setError] = useState(false);
@@ -25,6 +28,7 @@ export default function Login({ navigation }) {
 	const [password, setPassword] = useState("");
 	const [, { login }] = useAuth();
 	const [fade, setFade] = useState(true);
+	const [rememberMe, setRememberMe] = useState(false);
 
 	const storeData = async (value) => {
 		try {
@@ -40,6 +44,12 @@ export default function Login({ navigation }) {
 			setMessage("Os campos são obrigatórios");
 		} else {
 			setError(false);
+			if (rememberMe === true) {
+				rememberUser();
+			} else {
+				forgetUser();
+			}
+
 			firebase
 				.auth()
 				.signInWithEmailAndPassword(email, password)
@@ -57,13 +67,50 @@ export default function Login({ navigation }) {
 		}
 	}
 
-	const fadeAnim = useRef(new Animated.Value(0)).current;
+	function toggleRememberMe() {
+		setRememberMe(() => !rememberMe);
+	}
+
+	async function rememberUser() {
+		try {
+			await AsyncStorage.setItem("@gift_userRemember", email);
+		} catch (error) {
+			console.log(error);
+		}
+	}
+
+	async function forgetUser() {
+		try {
+			await AsyncStorage.removeItem("@gift_userRemember");
+		} catch (error) {
+			console.log(error);
+		}
+	}
+
+	async function getRememberedUser() {
+		try {
+			const username = await AsyncStorage.getItem("@gift_userRemember");
+			if (username !== null) {
+				return username;
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	}
 
 	useEffect(() => {
 		setTimeout(() => {
 			setFade(false);
 		}, 1800);
 	});
+
+	useEffect(() => {
+		getRememberedUser().then((username) => {
+			setEmail(() => username || "");
+			setRememberMe(() => (username ? true : false));
+		});
+	}, []);
+
 	return (
 		<KeyboardAvoidingView style={styles.container}>
 			{fade && (
@@ -76,25 +123,34 @@ export default function Login({ navigation }) {
 				<View style={styles.container}>
 					<Text style={styles.title}>Gift Me</Text>
 
-					<TextInput
+					<EmailInput
 						type="text"
-						style={styles.input}
 						placeholder="Digite seu email"
 						onChangeText={setEmail}
 						value={email}
-					></TextInput>
-					<TextInput
+					/>
+
+					<PasswordInput
 						type="text"
-						secureTextEntry={true}
-						style={styles.input}
 						placeholder="Digite sua senha"
 						onChangeText={setPassword}
 						value={password}
 						maxLength={30}
-					></TextInput>
+					/>
 
 					<View style={{ height: 30 }}>
 						{error && <ErrorMessage message={message} />}
+					</View>
+
+					{/* REMEMBER ME SWITCH */}
+					<View style={styles.rememberMe}>
+						<Text style={styles.textRememberMe}>Lembrar de mim</Text>
+						<Switch
+							value={rememberMe}
+							onValueChange={toggleRememberMe}
+							thumbColor={colors.mainPink}
+							trackColor={{ false: "#E1E5F2", true: colors.secondPink }}
+						/>
 					</View>
 
 					<TouchableOpacity

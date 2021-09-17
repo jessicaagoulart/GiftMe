@@ -10,7 +10,6 @@ import EventDetails from "./pages/EventDetails";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import MyEvents from "./pages/MyEvents";
-import Initial from "./pages/Initial";
 
 const Stack = createStackNavigator();
 

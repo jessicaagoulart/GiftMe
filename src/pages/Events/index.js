@@ -6,8 +6,7 @@ import styles from "./style";
 import Cabecalho from "../../components/Cabecalho";
 import Event from "../../components/Event";
 import { useStore } from "../../store";
-import Button from "../../components/Button";
-import { Search } from "react-native-feather";
+import IconButton from "../../components/IconButton";
 import { Frown } from "react-native-feather";
 
 export default function Events({ navigation }) {
@@ -76,9 +75,6 @@ export default function Events({ navigation }) {
 					onChangeText={(text) => searchFilter(text)}
 					underlineColorAndroid="transparent"
 				/>
-				<TouchableOpacity>
-					<Search stroke="#FFEAEC" />
-				</TouchableOpacity>
 			</View>
 
 			{/* MESSAGE IF NO EVENTS FILTERED */}
@@ -101,7 +97,7 @@ export default function Events({ navigation }) {
 			/>
 
 			{/* ADD NEW EVENT BUTTON */}
-			<Button
+			<IconButton
 				name="plus"
 				color="#fff"
 				size={20}

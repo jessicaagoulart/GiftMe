@@ -15,7 +15,7 @@ import { useNavigation } from "@react-navigation/core";
 import ErrorMessage from "../ErrorMessage";
 import { icons } from "../../utils/icons";
 import produtos from "../../utils/produtos";
-import Button from "../Button";
+import IconButton from "../IconButton";
 
 export default function StepForm({ userId }) {
 	const navigation = useNavigation();

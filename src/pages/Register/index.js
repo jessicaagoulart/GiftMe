@@ -2,13 +2,13 @@ import React from "react";
 import {
 	View,
 	Text,
-	SafeAreaView,
-	TextInput,
 	TouchableOpacity,
 	KeyboardAvoidingView,
 } from "react-native";
 import { useState } from "react";
 import ErrorMessage from "../../components/ErrorMessage";
+import PasswordInput from "../../components/PasswordInput";
+import EmailInput from "../../components/EmailInput";
 import styles from "./style";
 import firebase from "firebase";
 
@@ -47,31 +47,28 @@ export default function Register({ navigation }) {
 	return (
 		<KeyboardAvoidingView style={styles.container}>
 			<Text style={styles.title}>Cadastre-se</Text>
-			<TextInput
+			<EmailInput
 				type="text"
-				style={styles.input}
-				placeholder="Digite um email"
+				placeholder="Digite seu email"
 				onChangeText={setEmail}
 				value={email}
-			></TextInput>
-			<TextInput
+			/>
+			<PasswordInput
 				type="text"
-				secureTextEntry={true}
 				style={styles.input}
 				placeholder="Digite uma senha"
 				onChangeText={setPassword}
 				value={password}
 				maxLength={30}
-			></TextInput>
-			<TextInput
+			/>
+			<PasswordInput
 				type="text"
-				secureTextEntry={true}
 				style={styles.input}
 				placeholder="Confirme sua senha"
 				onChangeText={setPasswordConfirmation}
 				value={passwordConfirmation}
 				maxLength={30}
-			></TextInput>
+			/>
 
 			<View style={{ height: 20 }}>
 				{error && <ErrorMessage message={message} />}

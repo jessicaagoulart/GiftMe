@@ -53,12 +53,13 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 40,
 	},
 	stepButton: {
-		width: 70,
-		height: 35,
+		width: 100,
+		height: 50,
 		backgroundColor: colors.mainPink,
 		justifyContent: "center",
 		alignItems: "center",
 		borderRadius: 30,
+		marginBottom: 10,
 	},
 	textButton: {
 		color: "#fff",
