@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
 	View,
 	Text,
@@ -15,7 +15,7 @@ import { useNavigation } from "@react-navigation/core";
 import ErrorMessage from "../ErrorMessage";
 import { icons } from "../../utils/icons";
 import produtos from "../../utils/produtos";
-import IconButton from "../IconButton";
+import DefaultButton from "../DefaultButton";
 
 export default function StepForm({ userId }) {
 	const navigation = useNavigation();
@@ -45,7 +45,7 @@ export default function StepForm({ userId }) {
 	function validation(pagina) {
 		if (pagina == 1) {
 			if (eventTitle == "" || userName == "") {
-				setMessage("Campos obrigatorios");
+				setMessage("Campos obrigatórios");
 				setError(() => true);
 			} else {
 				setError(() => false);
@@ -166,19 +166,17 @@ export default function StepForm({ userId }) {
 			{page == 4 && (
 				<View style={styles.stepFour}>
 					<Text style={styles.label}>
-						Prontinho! Voce finalizou todos os passos para criar seu evento.
+						Prontinho! Você finalizou todos os passos para criar seu evento.
 					</Text>
 
 					{/* BOTAO SALVAR */}
-					<TouchableOpacity
-						activeOpacity={0.7}
-						style={styles.saveButton}
+					<DefaultButton
+						normal
+						text="Salvar"
 						onPress={() => {
 							addEvent();
 						}}
-					>
-						<Text style={styles.textButton}>Salvar</Text>
-					</TouchableOpacity>
+					/>
 				</View>
 			)}
 
@@ -190,36 +188,30 @@ export default function StepForm({ userId }) {
 			{/* BOTOES DE AVANCAR E VOLTAR */}
 			<View style={styles.containerStepsButton}>
 				{page == 1 ? (
-					<TouchableOpacity
-						activeOpacity={0.7}
-						style={styles.stepButton}
+					<DefaultButton
+						left
+						text="Voltar"
 						onPress={() => navigation.navigate("Events")}
-					>
-						<Text style={styles.textButton}>Voltar</Text>
-					</TouchableOpacity>
+					/>
 				) : (
-					<TouchableOpacity
-						activeOpacity={0.7}
-						style={styles.stepButton}
+					<DefaultButton
+						left
+						text="Voltar"
 						onPress={() => {
 							setError(() => false);
 							setPage((currentPage) => currentPage - 1);
 						}}
-					>
-						<Text style={styles.textButton}>Voltar</Text>
-					</TouchableOpacity>
+					/>
 				)}
 
 				{page != 4 && (
-					<TouchableOpacity
-						activeOpacity={0.7}
-						style={styles.stepButton}
+					<DefaultButton
+						right
+						text="Avançar"
 						onPress={() => {
 							validation(page);
 						}}
-					>
-						<Text style={styles.textButton}>Avançar</Text>
-					</TouchableOpacity>
+					/>
 				)}
 			</View>
 		</View>

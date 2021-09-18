@@ -188,8 +188,9 @@ export default function EventDetails({ navigation, route }) {
 
 			{/* MODAL  */}
 			<MyModal
-				title="Voce acabou de reservar um presente"
+				title="Você acabou de reservar um presente"
 				isVisible={isModalVisible}
+				sucess
 				onPress1={() => {
 					setDisabled(() => false);
 					setGiftItems(null);

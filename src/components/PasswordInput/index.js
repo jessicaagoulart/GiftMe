@@ -29,12 +29,12 @@ export default function PasswordInput({
 
 			{!visible && (
 				<TouchableOpacity onPress={toggleEye}>
-					<Eye stroke={colors.mainPink} size={15} />
+					<Eye stroke={colors.mainPink} width={15} height={15} />
 				</TouchableOpacity>
 			)}
 			{visible && (
 				<TouchableOpacity onPress={toggleEye}>
-					<EyeOff stroke={colors.mainPink} size={15} />
+					<EyeOff stroke={colors.mainPink} width={15} height={15} />
 				</TouchableOpacity>
 			)}
 		</View>

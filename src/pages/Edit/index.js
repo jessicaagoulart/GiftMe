@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback, useRef } from "react";
 import {
 	View,
 	Text,
@@ -27,16 +27,29 @@ export default function Edit({ navigation, route }) {
 	const [page, setPage] = useState(1);
 	const [gifts, setGifts] = useState([]);
 	const [newData, setNewData] = useState([]);
+	const [modalType, setModalType] = useState("");
+	const mountedRef = useRef(true);
+
+	const fetchSpecificItem = useCallback(async () => {
+		try {
+			let list = [];
+			for (let i = 0; i < produtos.length; i++) {
+				if (!avaiableGifts.includes(produtos[i].id)) {
+					list.push(produtos[i]);
+				}
+			}
+
+			if (!mountedRef.current) return null;
+			setNewData(list);
+		} catch (error) {}
+	}, [mountedRef]);
 
 	useEffect(() => {
-		let list = [];
-		for (let i = 0; i < produtos.length; i++) {
-			if (!avaiableGifts.includes(produtos[i].id)) {
-				list.push(produtos[i]);
-			}
-		}
-		setNewData(list);
-	}, []);
+		fetchSpecificItem();
+		return () => {
+			mountedRef.current = false;
+		};
+	}, [fetchSpecificItem]);
 
 	function editEvent() {
 		var newAvaiableArray = avaiableGifts.concat(gifts);
@@ -64,6 +77,7 @@ export default function Edit({ navigation, route }) {
 				unavaiableGifts: unavaiableGifts,
 			});
 		}
+		toggleModal();
 		navigation.navigate("Events");
 	}
 
@@ -167,7 +181,7 @@ export default function Edit({ navigation, route }) {
 					style={styles.plusItems}
 				>
 					<Text style={styles.plusItemsText}>
-						Adicionar mais item a lista de presente
+						Adicionar mais itens à lista de presente
 					</Text>
 				</TouchableOpacity>
 			)}
@@ -183,7 +197,8 @@ export default function Edit({ navigation, route }) {
 					if (userNameEdit == "" || eventTitleEdit == "") {
 						setError(true);
 					} else {
-						editEvent();
+						setModalType(() => "save");
+						toggleModal();
 					}
 				}}
 				name="save"
@@ -191,11 +206,26 @@ export default function Edit({ navigation, route }) {
 				color="#fff"
 			/>
 
+			{/* MODAL SAVED */}
+			{modalType == "save" && (
+				<MyModal
+					sucess
+					title="Evento salvo com sucesso!"
+					isVisible={isModalVisible}
+					onPress1={editEvent}
+					button="Ok"
+					onBackdropPress={toggleModal}
+				/>
+			)}
+
 			{/* DELETE BUTTON */}
 			{page == 1 && (
 				<Pressable
 					style={styles.deleteButton}
-					onPress={toggleModal}
+					onPress={() => {
+						setModalType(() => "delete");
+						toggleModal();
+					}}
 					name="trash"
 					size={25}
 					color="#fff"
@@ -205,15 +235,16 @@ export default function Edit({ navigation, route }) {
 				</Pressable>
 			)}
 
-			{/* MODAL */}
-			{page == 1 && (
+			{/* MODAL DELETE */}
+			{modalType == "delete" && (
 				<MyModal
-					title="Deseja excluir o evento?"
+					dangerous
+					title="Tem certeza que deseja excluir o evento?"
 					isVisible={isModalVisible}
-					onPress1={deleteEvent}
-					onPress2={toggleModal}
-					button="Sim"
-					button2="Nao"
+					onPress1={toggleModal}
+					onPress2={deleteEvent}
+					button="Cancelar"
+					button2="Excluir evento"
 					onBackdropPress={toggleModal}
 				/>
 			)}

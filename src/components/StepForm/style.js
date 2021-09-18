@@ -52,18 +52,6 @@ const styles = StyleSheet.create({
 		paddingBottom: 20,
 		paddingHorizontal: 40,
 	},
-	stepButton: {
-		width: 100,
-		height: 50,
-		backgroundColor: colors.mainPink,
-		justifyContent: "center",
-		alignItems: "center",
-		borderRadius: 30,
-		marginBottom: 10,
-	},
-	textButton: {
-		color: "#fff",
-	},
 	step: {
 		flex: 1,
 		paddingHorizontal: 40,

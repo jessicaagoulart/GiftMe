@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback, useRef } from "react";
 import { View, FlatList, Text } from "react-native";
 import database from "../../config/firebaseconfig";
 import styles from "./style";
@@ -10,21 +10,32 @@ import { Frown } from "react-native-feather";
 
 export default function MyEvents({ navigation }) {
 	const [store] = useStore();
-
 	const [events, setEvents] = useState([]);
+	const mountedRef = useRef(true);
+
+	const fetchSpecificItem = useCallback(async () => {
+		try {
+			database.collection("Eventos").onSnapshot((query) => {
+				const list = [];
+
+				query.forEach((doc) => {
+					if (doc.data().userId === store.auth) {
+						list.push({ ...doc.data(), id: doc.id });
+					}
+				});
+
+				if (!mountedRef.current) return null;
+				setEvents(list);
+			});
+		} catch (error) {}
+	}, [mountedRef]);
 
 	useEffect(() => {
-		database.collection("Eventos").onSnapshot((query) => {
-			const list = [];
-
-			query.forEach((doc) => {
-				if (doc.data().userId === store.auth) {
-					list.push({ ...doc.data(), id: doc.id });
-				}
-			});
-			setEvents(list);
-		});
-	}, []);
+		fetchSpecificItem();
+		return () => {
+			mountedRef.current = false; // clean up function
+		};
+	}, [fetchSpecificItem]); // add function as dependency
 
 	return (
 		<View style={styles.container}>

@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import { View, FlatList, TextInput, Text } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import database from "../../config/firebaseconfig";
 import styles from "./style";
 import Cabecalho from "../../components/Cabecalho";
@@ -14,17 +13,28 @@ export default function Events({ navigation }) {
 	const [events, setEvents] = useState([]);
 	const [filteredEvents, setFilteredEvents] = useState([]);
 	const [search, setSearch] = useState("");
+	const mountedRef = useRef(true);
+
+	const fetchSpecificItem = useCallback(async () => {
+		try {
+			database.collection("Eventos").onSnapshot((query) => {
+				const list = [];
+				query.forEach((doc) => {
+					list.push({ ...doc.data(), id: doc.id });
+				});
+				if (!mountedRef.current) return null;
+				setEvents(list);
+				setFilteredEvents(list);
+			});
+		} catch (error) {}
+	}, [mountedRef]);
 
 	useEffect(() => {
-		database.collection("Eventos").onSnapshot((query) => {
-			const list = [];
-			query.forEach((doc) => {
-				list.push({ ...doc.data(), id: doc.id });
-			});
-			setEvents(list);
-			setFilteredEvents(list);
-		});
-	}, []);
+		fetchSpecificItem();
+		return () => {
+			mountedRef.current = false; // clean up function
+		};
+	}, [fetchSpecificItem]); // add function as dependency
 
 	function searchFilter(text) {
 		if (text) {
