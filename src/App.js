@@ -3,6 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { View, ActivityIndicator } from "react-native";
 import { StoreProvider, useStore } from "./store";
+import Toast from "react-native-toast-message";
 import Events from "./pages/Events";
 import Edit from "./pages/Edit";
 import NewEvent from "./pages/NewEvent";
@@ -88,6 +89,7 @@ export default function App() {
 		<StoreProvider>
 			<NavigationContainer>
 				<Router />
+				<Toast ref={(ref) => Toast.setRef(ref)} />
 			</NavigationContainer>
 		</StoreProvider>
 	);

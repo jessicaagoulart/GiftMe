@@ -56,17 +56,11 @@ const styles = StyleSheet.create({
 		flex: 1,
 		paddingHorizontal: 40,
 	},
-	step: {
-		flex: 1,
-		paddingHorizontal: 40,
-	},
 	stepThree: {
-		paddingVertical: 15,
 		flex: 1,
 		width: "100%",
 	},
 	stepFour: {
-		paddingHorizontal: 40,
 		paddingVertical: 15,
 		justifyContent: "center",
 		alignItems: "center",

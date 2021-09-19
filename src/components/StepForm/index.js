@@ -16,6 +16,8 @@ import ErrorMessage from "../ErrorMessage";
 import { icons } from "../../utils/icons";
 import produtos from "../../utils/produtos";
 import DefaultButton from "../DefaultButton";
+import { ProgressBar, Colors } from "react-native-paper";
+import { colors } from "../../utils/colors";
 
 export default function StepForm({ userId }) {
 	const navigation = useNavigation();
@@ -73,6 +75,7 @@ export default function StepForm({ userId }) {
 			{/* STEP 1 */}
 			{page == 1 && (
 				<View style={styles.step}>
+					<ProgressBar progress={0.25} color={colors.mainPink} />
 					<Text style={styles.title}>Nome do Evento</Text>
 					<TextInput
 						style={styles.input}
@@ -93,6 +96,7 @@ export default function StepForm({ userId }) {
 			{/* STEP 2 */}
 			{page == 2 && (
 				<View style={styles.step}>
+					<ProgressBar progress={0.5} color={colors.mainPink} />
 					<View style={styles.myIcon}>
 						<Image source={icon} resizeMode="contain" />
 					</View>
@@ -124,6 +128,9 @@ export default function StepForm({ userId }) {
 			{/* STEP 3 */}
 			{page == 3 && (
 				<View style={styles.stepThree}>
+					<View style={{ paddingHorizontal: 40 }}>
+						<ProgressBar progress={0.75} color={colors.mainPink} />
+					</View>
 					<Text style={styles.label}>
 						Monte sua lista de desejos de presente
 					</Text>
@@ -164,19 +171,22 @@ export default function StepForm({ userId }) {
 
 			{/* STEP 4 */}
 			{page == 4 && (
-				<View style={styles.stepFour}>
-					<Text style={styles.label}>
-						Prontinho! Você finalizou todos os passos para criar seu evento.
-					</Text>
+				<View style={styles.step}>
+					<ProgressBar progress={1} color={colors.mainPink} />
+					<View style={styles.stepFour}>
+						<Text style={styles.label}>
+							Prontinho! Você finalizou todos os passos para criar seu evento.
+						</Text>
 
-					{/* BOTAO SALVAR */}
-					<DefaultButton
-						normal
-						text="Salvar"
-						onPress={() => {
-							addEvent();
-						}}
-					/>
+						{/* BOTAO SALVAR */}
+						<DefaultButton
+							normal
+							text="Salvar"
+							onPress={() => {
+								addEvent();
+							}}
+						/>
+					</View>
 				</View>
 			)}
 

@@ -2,7 +2,6 @@ import React from "react";
 import {
 	View,
 	Text,
-	TextInput,
 	TouchableOpacity,
 	KeyboardAvoidingView,
 	Animated,
@@ -10,11 +9,11 @@ import {
 	Switch,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import animation from "../../assets/animation/animation.json";
-import ErrorMessage from "../../components/ErrorMessage";
 import PasswordInput from "../../components/PasswordInput";
 import EmailInput from "../../components/EmailInput";
+import Toast from "react-native-toast-message";
 import Lottie from "lottie-react-native";
 import { useAuth } from "../../auth";
 import firebase from "firebase";
@@ -27,8 +26,27 @@ export default function Login({ navigation }) {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [, { login }] = useAuth();
-	const [fade, setFade] = useState(true);
+	const [fade, setFade] = useState(false);
 	const [rememberMe, setRememberMe] = useState(false);
+
+	useEffect(() => {
+		setError(false);
+		setTimeout(() => {
+			setFade(false);
+		}, 1800);
+	});
+
+	useEffect(() => {
+		if (error) {
+			Toast.show({
+				type: "error",
+				position: "bottom",
+				text1: "Falha",
+				text2: message,
+				visibilityTime: 1000,
+			});
+		}
+	}, [loginFirebase]);
 
 	const storeData = async (value) => {
 		try {
@@ -57,6 +75,13 @@ export default function Login({ navigation }) {
 					let user = userCredential.user;
 					login(user.uid);
 					storeData(user.email);
+					Toast.show({
+						type: "success",
+						position: "bottom",
+						text1: "Sucesso!",
+						text2: "Login realizado com sucesso",
+						visibilityTime: 1000,
+					});
 					navigation.navigate("Events", { userId: user.uid });
 				})
 				.catch((error) => {
@@ -99,12 +124,6 @@ export default function Login({ navigation }) {
 	}
 
 	useEffect(() => {
-		setTimeout(() => {
-			setFade(false);
-		}, 1800);
-	});
-
-	useEffect(() => {
 		getRememberedUser().then((username) => {
 			setEmail(() => username || "");
 			setRememberMe(() => (username ? true : false));
@@ -137,10 +156,6 @@ export default function Login({ navigation }) {
 						value={password}
 						maxLength={30}
 					/>
-
-					<View style={{ height: 30 }}>
-						{error && <ErrorMessage message={message} />}
-					</View>
 
 					{/* REMEMBER ME SWITCH */}
 					<View style={styles.rememberMe}>
