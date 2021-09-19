@@ -58,4 +58,21 @@ O projeto é um aplicativo de lista de desejo de presentes, onde os usuários po
 
 :heavy_plus_sign:__Adicionar página de "Meus Eventos" para o usuário visualizar todos os eventos criados por ele
 
-:heavy_plus_sign:__Adicionar barra de pesquisa para buscar Eventos.
+:heavy_plus_sign:__Adicionar barra de pesquisa para buscar Eventos.<br/><br/>
+
+
+# :white_medium_small_square: Ferramentas utilizadas :white_medium_small_square:
+
+<br/>
+
+:white_small_square: Firebase Authentication e Firestore <br/>
+
+:white_small_square: React Navigation <br/>
+
+:white_small_square: Lottie <br/>
+
+:white_small_square: React Toast Message <br/>
+
+:white_small_square: AsyncStorage <br/>
+
+:white_small_square: Progress Bar <br/>
