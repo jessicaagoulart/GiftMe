@@ -31,7 +31,18 @@ export default function EventDetails({ navigation, route }) {
 		setModalVisible(!isModalVisible);
 	};
 
-	useEffect(() => {
+	function updateGifts(item) {
+		setDisabled(() => true);
+
+		avaiableGifts.splice(avaiableGifts.indexOf(item), 1);
+		setAvaiable(() => avaiableGifts);
+
+		if (unavaiableGifts === undefined) {
+			setUnavaiable([item]);
+		} else {
+			setUnavaiable((prev) => [...prev, item]);
+		}
+
 		if (giftItems) {
 			database
 				.collection("Eventos")
@@ -40,19 +51,6 @@ export default function EventDetails({ navigation, route }) {
 					avaiableGifts: firebase.firestore.FieldValue.arrayRemove(giftItems),
 					unavaiableGifts: firebase.firestore.FieldValue.arrayUnion(giftItems),
 				});
-		}
-	}, [updateGifts]);
-
-	function updateGifts() {
-		setDisabled(() => true);
-		avaiableGifts.splice(avaiableGifts.indexOf(giftItems), 1);
-
-		setAvaiable(() => avaiableGifts);
-
-		if (unavaiableGifts === undefined) {
-			setUnavaiable([giftItems]);
-		} else {
-			setUnavaiable((prev) => [...prev, giftItems]);
 		}
 
 		setModalVisible(!isModalVisible);
