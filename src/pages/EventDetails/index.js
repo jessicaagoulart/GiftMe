@@ -45,9 +45,6 @@ export default function EventDetails({ navigation, route }) {
 
 	function updateGifts() {
 		setDisabled(() => true);
-
-		console.log("gift:", giftItems);
-		console.log("unavaiableItems:", unavaiable);
 		avaiableGifts.splice(avaiableGifts.indexOf(giftItems), 1);
 
 		setAvaiable(() => avaiableGifts);
