@@ -16,12 +16,12 @@ const styles = StyleSheet.create({
 	containerDescription: {
 		alignItems: "flex-start",
 		marginLeft: 20,
-		width: 220,
+		width: 200,
 	},
 	eventTitle: {
 		width: "100%",
 		color: "#444",
-		fontSize: 20,
+		fontSize: 18,
 		marginBottom: 5,
 	},
 	eventOrganizer: {
