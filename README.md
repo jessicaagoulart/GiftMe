@@ -67,6 +67,8 @@ O projeto é um aplicativo de lista de desejo de presentes, onde os usuários po
 
 :white_small_square: Firebase Authentication e Firestore <br/>
 
+:white_small_square: Context API <br/>
+
 :white_small_square: React Navigation <br/>
 
 :white_small_square: Lottie <br/>
