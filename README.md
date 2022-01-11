@@ -2,13 +2,18 @@
 
 <img src="https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAF"/>
 
+<p align="center">
+  <img src="https://i.ibb.co/yy4KW2K/Flying-i-Phone-12-Mockup-Left-View.png">
+</p>
+
 Projeto sendo desenvolvido para o Bootcamp de React Native na Compasso Uol como forma de aprendizado, reaproveitando os conhecimentos adquiridos em ReactJS, iniciando em React Native e aprimorando as tecnologias.
 
 O projeto é um aplicativo de lista de desejo de presentes, onde os usuários podem visualizar eventos, buscar por um evento ao qual foi convidado pessoalmente e reservar um presente que deseja dar ao organizador do evento. Cada presente só pode ser enviado uma vez, ficando indisponível e evitando o recebimento de presentes repetidos. 
 
 *Ao enviar um presente ao usuário pelo App, o remetente está apenas reservando aquele presente para que no dia do evento possa presentear o organizador com o item escolhido. O app não possui serviço de compra e envio do presente.*<br/><br/>
 
-# :white_medium_small_square: O App :white_medium_small_square:
+
+## :white_medium_small_square: O App :white_medium_small_square:
 
 <br/>
 
@@ -26,8 +31,11 @@ O projeto é um aplicativo de lista de desejo de presentes, onde os usuários po
 
 :white_small_square: O usuário pode *enviar* um presente em um evento de outro usuário.<br/><br/>
 
+<p align="center">
+  <img src="https://i.ibb.co/2npYSKF/Group-1-4.png">
+</p>
 
-# :white_medium_small_square: Objetivos :white_medium_small_square:
+## :white_medium_small_square: Objetivos :white_medium_small_square:
 
 <br/>
 
@@ -41,7 +49,7 @@ O projeto é um aplicativo de lista de desejo de presentes, onde os usuários po
 
 :heavy_check_mark:__Treinar validação de formulário <br/><br/>
 
-# :white_medium_small_square: Bônus técnicos :white_medium_small_square:
+## :white_medium_small_square: Bônus técnicos :white_medium_small_square:
 
 <br/>
 
@@ -50,7 +58,7 @@ O projeto é um aplicativo de lista de desejo de presentes, onde os usuários po
 :heavy_plus_sign:__Migrar dados mocados de lista de produtos para presente para consumo de API <br/><br/>
 
 
-# :white_medium_small_square: Bônus de funcionalidades do App :white_medium_small_square:
+## :white_medium_small_square: Bônus de funcionalidades do App :white_medium_small_square:
 
 <br/>
 
@@ -61,7 +69,7 @@ O projeto é um aplicativo de lista de desejo de presentes, onde os usuários po
 :heavy_plus_sign:__Adicionar barra de pesquisa para buscar Eventos.<br/><br/>
 
 
-# :white_medium_small_square: Ferramentas utilizadas :white_medium_small_square:
+## :white_medium_small_square: Ferramentas utilizadas :white_medium_small_square:
 
 <br/>
 
